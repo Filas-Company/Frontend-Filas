@@ -9,6 +9,7 @@
     width: 100%;
     margin: 0px auto 0;
     padding: 0px 10px 0px;
+    margin-top: 10px;
 }
 
 .filas {
@@ -101,11 +102,23 @@
 
 .senha-user {
     display: grid;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    grid-template-columns: 1fr 1fr 1fr; /* Três colunas de tamanho igual */
     font-size: 20px;
+    width: 100vw; /* Para usar a largura total da tela */
+    height: 30px;
+    margin-left: -30px;
 }
+
+.senha-user p {
+    text-align: center; /* Centraliza o texto do <p> na coluna do meio */
+    grid-column: 2; /* Coloca o <p> na coluna do meio */
+}
+.senha-user button {
+    grid-column: 3; 
+    text-align: end;
+    margin-right: 30px;
+}
+
 
 .ver-tudo {
     background: none;

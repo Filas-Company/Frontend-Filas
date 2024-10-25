@@ -99,13 +99,17 @@ function App() {
           </div>
 
           <div></div>
-          <button className="ver-chamados" onClick={VerChamados}>
-              <label>{mostrandoProntos ? "Ver Menos" : "Ver Já Chamados"}</label>
-          </button>
-          <div className='naoveio'>
-              {mostrandoProntos && (
-                <div className="prontos-scroll">
-                    <p>Já Chamados:</p>
+          <div className='chamados'>
+              {mostrandoProntos ? (
+                <div className="nao veio">
+                    <div className='ja-chamados'>
+                      <p>Já Chamados:</p>
+                      <button className='ver-chamados-btn' onClick={VerChamados}>
+                        <label>{mostrandoProntos ? "Ver Menos" : "Ver Já Chamados"}
+                        </label>
+                      </button>
+                    </div>
+
                     <ul className="prontos">
                       {itens.map(cadaItem => (
                         (cadaItem.status === 2) ? (
@@ -119,6 +123,13 @@ function App() {
                       ))}
                     </ul>
                 </div>
+              ) : (
+                <div className='naoveio'>
+                  <button className='ver-chamados-btn' onClick={VerChamados}>
+                    <label>{mostrandoProntos ? "Ver Menos" : "Ver Já Chamados"}
+                    </label>
+                  </button>
+                </div>
               )}
           </div>
         </div>
@@ -127,13 +138,13 @@ function App() {
             <ul className="proximo">
               <div className="container-proximos">
                 <div className="senha-user">
-                  <button className="ver-tudo" onClick={VerTodos}>
-                    <label>{verMais ? "Ver Todos da Fila" : "Ver menos"}</label>
-                  </button>
                   {!mostrandoTodos && (
                     <p>Sua senha</p>
                   )}
 
+                  <button className="ver-tudo" onClick={VerTodos}>
+                    <label>{verMais ? "Ver Todos" : "Ver menos"}</label>
+                  </button>
                 </div>
 
                 {itens.map(cadaItem => (

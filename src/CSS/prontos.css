@@ -12,6 +12,7 @@
     padding: 0px 10px;
     height: auto;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .chamando {
@@ -55,27 +56,46 @@
     white-space: nowrap;
 }
 
-.prontos-scroll::-webkit-scrollbar {
-    display: none; /* Oculta a barra de rolagem no Chrome, Safari e Edge */
-}
 .naoveio {
     display: flex;
-    width: 100%;
+    justify-content: space-between; /* Alinha o conteúdo ao longo do eixo horizontal */
+    align-items: center; /* Alinha verticalmente ao centro */ /* Se necessário */
     color: #909090;
 }
 .naoveio p {
-    margin-right: auto;
-    width: 100%;
+    margin: 0;
 }
-.ver-chamados {
-    justify-content: flex-end;
+.naoveio button {
+    margin-left: auto;
+    background: none;
+    border: none; 
+    color: inherit;
+    padding: 0; 
+    cursor: pointer;
+    color: #9d9d9d;
 }
+.ver-chamados-btn {
+    margin-left: auto;
+    background: none;
+    border: none; 
+    color: inherit;
+    padding: 0; 
+    cursor: pointer;
+    color: #9d9d9d;
+    margin-right: 10px;
+}
+
 .prontos {
     display: flex;
     list-style: none;
-    padding: 0;
-    text-align: center;
-    margin: 0;
+}
+
+.ja-chamados {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 5px;
 }
 
 .chamando span {
