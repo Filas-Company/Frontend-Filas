@@ -28,6 +28,10 @@ function App() {
 
   const [singleton, setSingleton] = useState(false)
   const [highlightedSenha, setHighlightedSenha] = useState(null);
+  function TrocarHighlight(item) {
+    setHighlightedSenha(item.codigo);
+  }
+
   const [highlightedStatus, setHighlightedStatus] = useState(null);
   const handleConfirmAlert = (foundItem) => {
     setHighlightedSenha(foundItem.codigo);
@@ -151,6 +155,7 @@ function App() {
                   (cadaItem.status === 3) && !mostrandoTodos ? (
                     highlightedSenha === cadaItem.codigo ? (
                       <Proximo
+                        TrocarHighlight={TrocarHighlight}
                         item={cadaItem}
                         highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
                         log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
@@ -164,6 +169,7 @@ function App() {
                 {itens.map(cadaItem => (
                   (cadaItem.status === 3) && mostrandoTodos ? (
                     <Proximo
+                      TrocarHighlight={TrocarHighlight}
                       item={cadaItem}
                       highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
                       log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
@@ -181,6 +187,7 @@ function App() {
               {itens.map(cadaItem => (
                 cadaItem.ordem !== 0 && cadaItem.ordem !== -1 ? (
                   <Proximo
+                  TrocarHighlight={TrocarHighlight}
                     item={cadaItem}
                     highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
                     log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}

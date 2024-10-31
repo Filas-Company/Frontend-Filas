@@ -1,4 +1,4 @@
-function Proximo({ item, highlighted }) {
+function Proximo({ item, highlighted, TrocarHighlight}) {
   return (
     <li className={`filas ${highlighted ? 'highlighted' : ''}`}>
       {/*
@@ -17,6 +17,18 @@ function Proximo({ item, highlighted }) {
           item.text ? item.text : ""
         }
       </p>
+
+      {highlighted ? 
+      <span className="material-symbols-outlined sinoactive"
+      onClick={() => TrocarHighlight(item)}>
+      notifications_active
+    </span>
+      : 
+      <span className="material-symbols-outlined sino"
+      onClick={() => TrocarHighlight(item)}>
+        notifications
+      </span>
+      }
     </li>
   );
 }
