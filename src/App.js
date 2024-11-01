@@ -143,11 +143,11 @@ function App() {
               <div className="container-proximos">
                 <div className="senha-user">
                   {!mostrandoTodos && (
-                    <p>Sua senha</p>
+                    <p>Sua senha </p>
                   )}
 
                   <button className="ver-tudo" onClick={VerTodos}>
-                    <label>{verMais ? "Ver Todos" : "Ver menos"}</label>
+                    <label>{verMais ? "Ver Todos >" : "Ver menos >"}</label>
                   </button>
                 </div>
 
@@ -163,9 +163,7 @@ function App() {
                     ) : null
                   ) : null
                 ))}
-              </div>
 
-              <div className="container-proximos">
                 {itens.map(cadaItem => (
                   (cadaItem.status === 3) && mostrandoTodos ? (
                     <Proximo

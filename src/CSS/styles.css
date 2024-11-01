@@ -43,11 +43,11 @@ header h1 {
 }
 .logo {
     margin-left: 10px;
-    color: black;
+    color: #424242;
 }
 .rest {
     font-weight: 500;
-    color: black;
+    color: #424242;
     text-decoration: none;
     cursor: pointer;
     font-size: 1.3em;

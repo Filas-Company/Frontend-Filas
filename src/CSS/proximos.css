@@ -8,8 +8,10 @@
 .container-proximos {
     width: 100%;
     margin: 0px auto 0;
-    padding: 0px 10px 0px;
     margin-top: 10px;
+    background-color: white;
+    padding-top: 1px;
+    height: 100vh;
 }
 
 .filas {
@@ -106,17 +108,19 @@
     font-size: 20px;
     width: 100vw; /* Para usar a largura total da tela */
     height: 30px;
-    margin-left: -30px;
-}
 
+}
 .senha-user p {
     text-align: center; /* Centraliza o texto do <p> na coluna do meio */
     grid-column: 2; /* Coloca o <p> na coluna do meio */
+    font-weight: 600;
 }
 .senha-user button {
     grid-column: 3; 
     text-align: end;
     margin-right: 30px;
+    color: #B17A5B;
+    font-weight: 600;
 }
 
 
@@ -130,9 +134,9 @@
 }
 
 .sino {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 200, 'opsz' 48;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 200, 'opsz' 48;
     font-size: 35px; /* Ajuste o tamanho */
-    color: #858585; /* Cor do ícone */
+    color: #9d9d9d; /* Cor do ícone */
     margin-right: 8px;
 }
 .sinoactive {
