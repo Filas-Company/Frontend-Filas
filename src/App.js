@@ -107,12 +107,22 @@ function App() {
               {mostrandoProntos ? (
                 <div className="nao veio">
                     <div className='ja-chamados'>
-                      <p>Já Chamados:</p>
+                      <p>Já chamados:</p>
                       <button className='ver-chamados-btn' onClick={VerChamados}>
-                        <label>{mostrandoProntos ? "Ver Menos" : "Ver Já Chamados"}
+                        <label>{mostrandoProntos ? "ver menos" : "ver já chamados"}
+                        <span class="material-symbols-outlined"
+                        style={{ 
+                          fontSize: "13px", 
+                          verticalAlign: "middle",
+                          marginLeft: "2px",
+                          fontWeight: "500"}}
+                        >
+                          arrow_forward_ios
+                        </span>
                         </label>
                       </button>
                     </div>
+                    
 
                     <ul className="prontos">
                       {itens.map(cadaItem => (
@@ -130,7 +140,16 @@ function App() {
               ) : (
                 <div className='naoveio'>
                   <button className='ver-chamados-btn' onClick={VerChamados}>
-                    <label>{mostrandoProntos ? "Ver Menos" : "Ver Já Chamados"}
+                    <label>{mostrandoProntos ? "ver menos" : "ver já chamados"}
+                    <span class="material-symbols-outlined"
+                        style={{ 
+                          fontSize: "13px", 
+                          verticalAlign: "middle",
+                          marginLeft: "2px",
+                          fontWeight: "500"}}
+                        >
+                          arrow_forward_ios
+                    </span>
                     </label>
                   </button>
                 </div>
@@ -147,7 +166,18 @@ function App() {
                   )}
 
                   <button className="ver-tudo" onClick={VerTodos}>
-                    <label>{verMais ? "Ver Todos >" : "Ver menos >"}</label>
+                    <label>{verMais ? "ver todos" : "ver menos"}
+                    <span class="material-symbols-outlined"
+                        style={{ 
+                          fontSize: "13px", 
+                          verticalAlign: "middle",
+                          marginLeft: "2px",
+                          fontWeight: "500"
+                        }}
+                        >
+                          arrow_forward_ios
+                    </span>
+                    </label>
                   </button>
                 </div>
 
