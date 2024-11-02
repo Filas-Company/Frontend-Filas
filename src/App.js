@@ -124,18 +124,18 @@ function App() {
                     </div>
                     
 
-                    <ul className="prontos">
+                    <div className="container-prontos">
                       {itens.map(cadaItem => (
                         (cadaItem.status === 2) ? (
-                          <li key={cadaItem.codigo}>
                             <Pronto
+                              TrocarHighlight={TrocarHighlight}
                               item={cadaItem}
                               highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
+                              log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
                             />
-                          </li>
                         ) : null
                       ))}
-                    </ul>
+                    </div>
                 </div>
               ) : (
                 <div className='naoveio'>

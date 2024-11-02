@@ -13,7 +13,6 @@
     padding-top: 1px;
     height: 100vh;
 }
-
 .filas {
     font-size: 18px;
     width: 100%;
@@ -91,6 +90,22 @@
 
 .invert-on-hover:hover {
     opacity: 100%;
+}
+
+.prontos {
+    font-size: 18px;
+    width: 100%;
+    background-color: #ffeaea;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    border-radius: 30px;
+    margin: 10px auto 0;
+    margin-bottom: 20px;
+    border: 1px solid #ffcfcf;
+    position: relative;
 }
 
 .highlighted {
