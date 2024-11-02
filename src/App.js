@@ -10,29 +10,32 @@ import Pronto from './components/prontos';
 import Proximo from './components/proximos';
 import Chamando from './components/Chamando';
 
-// Teste para ver se ta funcionando o commit
-
 function App() {
   const [itens, setItens] = useState([]);
+  const [jaAbriu, setJaAbriu] = useState(false)
+  const [isAlertOpen, setIsAlertOpen] = useState(false)
+  const [singleton, setSingleton] = useState(false)
+  const [highlightedSenha, setHighlightedSenha] = useState(null);
+  const [highlightedStatus, setHighlightedStatus] = useState(null);
+  const [mostrandoProntos, setMostrandoProntos] = useState(false);
+  const [verMais, setVerMais] = useState(true);
+  const [mostrandoTodos, setMostrandoTodos] = useState(false);
+  
+
   function getData() {
     fetch('http://localhost:3000/fila/list', { method: 'GET' })
       .then(response => response.json())
       .then(data => setItens(data));
   }
 
-  const [jaAbriu, setJaAbriu] = useState(false)
-  const [isAlertOpen, setIsAlertOpen] = useState(false)
   const handleCloseAlert = () => {
     setIsAlertOpen(false);
   }
-
-  const [singleton, setSingleton] = useState(false)
-  const [highlightedSenha, setHighlightedSenha] = useState(null);
+  
   function TrocarHighlight(item) {
     setHighlightedSenha(item.codigo);
   }
-
-  const [highlightedStatus, setHighlightedStatus] = useState(null);
+  
   const handleConfirmAlert = (foundItem) => {
     setHighlightedSenha(foundItem.codigo);
     setIsAlertOpen(false);
@@ -44,28 +47,31 @@ function App() {
     }
   };
 
-  const [mostrandoProntos, setMostrandoProntos] = useState(false);
   function VerChamados() {
     setMostrandoProntos(!mostrandoProntos);
   };
 
-  const [verMais, setVerMais] = useState(true);
-  const [mostrandoTodos, setMostrandoTodos] = useState(false);
   function VerTodos() {
     setVerMais(!verMais);
     setMostrandoTodos(!mostrandoTodos);
   };
 
   useEffect(() => {
-    getData();
+    getData(); // Função que obtém dados da fila.
     if (!jaAbriu) {
       setIsAlertOpen(true);
     }
-  
+
     if (highlightedStatus === 2) {
       setMostrandoProntos(true);
     }
-  }, [singleton, highlightedStatus, jaAbriu]);
+
+    // Verificar se o item highlighted mudou para status 1
+    const highlightedItem = itens.find(item => item.codigo === highlightedSenha);
+    if (highlightedItem && highlightedItem.status === 1) {
+      alert(`O seu pedido ${highlightedItem.codigo} está pronto!`);
+    }
+  }, [singleton, highlightedStatus, jaAbriu, itens, highlightedSenha]);
 
   return (
     <div className="App">

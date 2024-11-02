@@ -155,10 +155,12 @@
     font-size: 35px; /* Ajuste o tamanho */
     color: #9d9d9d; /* Cor do ícone */
     margin-right: 8px;
+    cursor: pointer;
 }
 .sinoactive {
     font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 200, 'opsz' 48;
     font-size: 35px; /* Ajuste o tamanho */
     color: #ffffff; /* Cor do ícone */
     margin-right: 8px;
+    cursor: pointer;
 }
