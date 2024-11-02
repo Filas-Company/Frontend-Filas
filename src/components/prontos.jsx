@@ -19,14 +19,13 @@ function Proximo({ item, highlighted, TrocarHighlight}) {
       </p>
 
       {highlighted ? 
-      <span className="material-symbols-outlined sinoactive"
-      onClick={() => TrocarHighlight(item)}>
-      notifications_active
+      <span
+      >
+      Já Chamou!
     </span>
       : 
-      <span className="material-symbols-outlined sino"
-      onClick={() => TrocarHighlight(item)}>
-        notifications
+      <span
+      >
       </span>
       }
     </li>
