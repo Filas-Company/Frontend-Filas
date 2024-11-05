@@ -78,7 +78,7 @@ function App() {
     // if (highlightedItem && highlightedItem.status === 1) {
     //   alert(`O seu pedido ${highlightedItem.codigo} está pronto!`);
     // }
-  }, [singleton, highlightedStatus, jaAbriu, itens]);
+  }, [singleton, highlightedStatus, jaAbriu]);
 
   return (
     <div className="App">
