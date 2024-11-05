@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './CSS/alert.css';
+import './CSS/alertchama.css';
 import './CSS/styles.css';
 import './CSS/prontos.css';
 import './CSS/proximos.css';
