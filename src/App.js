@@ -6,6 +6,7 @@ import './CSS/proximos.css';
 import './CSS/admin.css';
 
 import Alert from './components/Alert';
+import AlertChama from './components/AlertChama';
 import Pronto from './components/prontos';
 import Proximo from './components/proximos';
 import Chamando from './components/Chamando';
@@ -14,12 +15,14 @@ function App() {
   const [itens, setItens] = useState([]);
   const [jaAbriu, setJaAbriu] = useState(false)
   const [isAlertOpen, setIsAlertOpen] = useState(false)
+  const [isAlertOpenChama, setIsAlertOpenChama] = useState(true)
   const [singleton, setSingleton] = useState(false)
   const [highlightedSenha, setHighlightedSenha] = useState(null);
   const [highlightedStatus, setHighlightedStatus] = useState(null);
   const [mostrandoProntos, setMostrandoProntos] = useState(false);
   const [verMais, setVerMais] = useState(true);
   const [mostrandoTodos, setMostrandoTodos] = useState(false);
+  let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
   
 
   function getData() {
@@ -30,6 +33,9 @@ function App() {
 
   const handleCloseAlert = () => {
     setIsAlertOpen(false);
+  }
+  const handleCloseAlertChama = () => {
+    setIsAlertOpenChama(!isAlertOpenChama);
   }
   
   function TrocarHighlight(item) {
@@ -67,11 +73,11 @@ function App() {
     }
 
     // Verificar se o item highlighted mudou para status 1
-    const highlightedItem = itens.find(item => item.codigo === highlightedSenha);
-    if (highlightedItem && highlightedItem.status === 1) {
-      alert(`O seu pedido ${highlightedItem.codigo} está pronto!`);
-    }
-  }, [singleton, highlightedStatus, jaAbriu, itens, highlightedSenha]);
+    // const highlightedItem = itens.find(item => item.codigo === highlightedSenha);
+    // if (highlightedItem && highlightedItem.status === 1) {
+    //   alert(`O seu pedido ${highlightedItem.codigo} está pronto!`);
+    // }
+  }, [singleton, highlightedStatus, jaAbriu, itens]);
 
   return (
     <div className="App">
@@ -82,6 +88,14 @@ function App() {
           onConfirm={handleConfirmAlert}
           lista={itens}
         />
+      </div>
+      <div>
+        {highlightedItem && highlightedItem.status === 1 && (
+          <AlertChama
+            isOpen={isAlertOpenChama}
+            onClose={handleCloseAlertChama}
+          />
+        )}
       </div>
 
       <div className="container-principal">
