@@ -1,0 +1,82 @@
+.chama {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 90vw; 
+  max-width: 335px; 
+  min-height: 158px;
+  height: auto; 
+  box-sizing: border-box;
+}
+
+.chama-close {
+  display: flex;
+  justify-content: flex-end; 
+  margin-bottom: -10px;
+}
+.chama-close span {
+  margin-top: 0px;
+  border: none;
+  background-color: white;
+  font-size: 22px;
+  color:#8a8a8a;
+  font-weight: 400;
+  
+}
+
+.chama-body h2 {
+  padding-left: 3px;
+  font-size: 1.0em;
+  color: #424242;
+  font-weight: 500;
+}
+.chama-body h3 {
+  margin-top: 12px;
+  margin-bottom: -2px;
+  text-align: center;
+  padding-left: 3px;
+  font-size: 1.4em;
+  color: #BE0E19;
+  font-weight: 600;
+}
+
+.chama-button {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Espaçamento entre os botões */
+  width: 100%; /* Ajusta a largura ao tamanho do container */
+}
+.button-ok {
+  margin-top: 20px;
+  height: 45px;
+  flex: 1;
+  border-radius: 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #B17A5B;
+  color: white;
+  border: 1px solid #B17A5B;
+  font-weight: 600;
+}
+
+.button-voltar {
+  margin-top: 20px;
+  height: 45px;
+  flex: 1;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background-color: white;
+  color: #B17A5B;
+  border: 1px solid #B17A5B;
+}

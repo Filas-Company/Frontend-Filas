@@ -28,8 +28,10 @@ const Alert = ({ isOpen, onClose, onConfirm, lista }) => {
       className="custom-modal"
       overlayClassName="custom-overlay"
     >
-      <div className="custom-modal-header">
-        {/*<button onClick={onClose} className="close-button">X</button>*/}
+      <div className="chama-close">
+        <span class="material-symbols-outlined" onClick={onClose}>
+          close
+        </span>
       </div>
       <div className="custom-modal-body">
         <h2 className='alert-text'>Qual a sua senha?</h2>

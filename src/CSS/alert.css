@@ -4,14 +4,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  border-radius: 24px;
-  padding-top: 37px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
+  border-radius: 10px;
+  padding: 15px;
   width: 90vw; 
   max-width: 335px; 
-  min-height: 240px;
+  min-height: 200px;
   height: auto; 
   box-sizing: border-box; /* Inclui padding e border na largura e altura */
 }
@@ -68,11 +65,11 @@
 }
 
 .cancel-button, .confirm-button {
-  height: 50px;
+  height: 45px;
   flex: 1;
   border-radius: 24px;
-  padding: 10px 20px;
-  font-size: 1.1em;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   border: none;
 }
