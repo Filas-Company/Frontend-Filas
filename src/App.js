@@ -92,6 +92,7 @@ function App() {
           <AlertChama
             isOpen={isAlertOpenChama}
             onClose={handleCloseAlertChama}
+            highlightedSenha={highlightedSenha}
           />
         )}
       </div>

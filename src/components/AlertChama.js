@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
 
-const AlertChama = ({ isOpen, onClose }) => {
+const AlertChama = ({ isOpen, onClose, highlightedSenha }) => {
 
   return (
     <Modal
@@ -20,7 +20,7 @@ const AlertChama = ({ isOpen, onClose }) => {
 
       <div className="chama-body">
         <h2>Seu pedido esta pronto!</h2>
-        <h3>nº 300</h3>
+        <h3>nº {highlightedSenha}</h3>
         
         <div className="chama-button">
           <button onClick={onClose} className="button-voltar">Voltar fila</button>
