@@ -32,9 +32,7 @@ function App() {
       .then(data => setItens(data));
   }
 
-  const handleCloseAlert = () => {
-    setIsAlertOpen(false);
-  }
+
   const handleCloseAlertChama = () => {
     setIsAlertOpenChama(!isAlertOpenChama);
   }
@@ -43,6 +41,10 @@ function App() {
     setHighlightedSenha(item.codigo);
   }
   
+  const handleCloseAlert = () => {
+    setIsAlertOpen(false);
+    setJaAbriu(true)
+  }
   const handleConfirmAlert = (foundItem) => {
     setHighlightedSenha(foundItem.codigo);
     setIsAlertOpen(false);
@@ -73,11 +75,6 @@ function App() {
       setMostrandoProntos(true);
     }
 
-    // Verificar se o item highlighted mudou para status 1
-    // const highlightedItem = itens.find(item => item.codigo === highlightedSenha);
-    // if (highlightedItem && highlightedItem.status === 1) {
-    //   alert(`O seu pedido ${highlightedItem.codigo} está pronto!`);
-    // }
   }, [singleton, highlightedStatus, jaAbriu, itens]);
 
   return (
