@@ -38,7 +38,7 @@ function App() {
   }
   
   function TrocarHighlight(item) {
-    setHighlightedSenha(item.codigo);
+    setHighlightedSenha(item.codigo===highlightedSenha ? null : item.codigo)
   }
   
   const handleCloseAlert = () => {
