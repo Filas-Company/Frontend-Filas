@@ -128,7 +128,7 @@ function App() {
                     <div className='ja-chamados'>
                       <p>Já chamados:</p>
                       <button className='ver-chamados-btn' onClick={VerChamados}>
-                        <label>{mostrandoProntos ? "ver menos" : "ver já chamados"}
+                        <label>{mostrandoProntos ? "ver menos" : "1 chamados"}
                         <span class="material-symbols-outlined"
                         style={{ 
                           fontSize: "13px", 
@@ -147,10 +147,10 @@ function App() {
                       {itens.map(cadaItem => (
                         (cadaItem.status === 2) ? (
                             <Pronto
-                              TrocarHighlight={TrocarHighlight}
-                              item={cadaItem}
-                              highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
-                              log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
+                             TrocarHighlight={TrocarHighlight}
+                             item={cadaItem}
+                             highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
+                             log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
                             />
                         ) : null
                       ))}
@@ -232,7 +232,7 @@ function App() {
           <div className="container-proximos">
             <ul className="proximo">
               {itens.map(cadaItem => (
-                cadaItem.ordem !== 0 && cadaItem.ordem !== -1 ? (
+                cadaItem.status !== 2 && cadaItem.status !== 1 ? (
                   <Proximo
                   TrocarHighlight={TrocarHighlight}
                     item={cadaItem}
