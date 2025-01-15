@@ -106,7 +106,7 @@ function App() {
               <h1 className="logo">FILA</h1>
             </a>
             </div>
-            <a href='https://www.burgerking.com.br' className="rest" target='blank'>Restaurante</a>
+            <a href='https://www.hachimitsuoficial.com.br/' className="rest" target='blank'>Hachimitsu</a>
           </nav>
         </header>
         <div className="container-prontos">
@@ -181,7 +181,7 @@ function App() {
               <div className="container-proximos">
                 <div className="senha-user">
                   {!mostrandoTodos && (
-                    <p>Sua senha </p>
+                    <p>Sua senha</p>
                   )}
 
                   <button className="ver-tudo" onClick={VerTodos}>
@@ -223,6 +223,12 @@ function App() {
                     />
                   ) : null
                 ))}
+                {!mostrandoTodos && (
+                    <div className='textinho'>
+                    <p>Seu pedido sendo preparado!</p>
+                    <p>Você será notificado assim que estiver pronto. 😊</p>
+                  </div>
+                )}
               </div>
             </ul>
           </div>
@@ -230,6 +236,7 @@ function App() {
         ) : (
 
           <div className="container-proximos">
+            <p className="p-proximos">Próximos</p>
             <ul className="proximo">
               {itens.map(cadaItem => (
                 cadaItem.status !== 2 && cadaItem.status !== 1 ? (

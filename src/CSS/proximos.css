@@ -13,6 +13,21 @@
     height: 100vh;
 /* O contêiner ocupa o espaço restante */ 
 }
+.p-proximos {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 650;
+    font-size: 1.2rem;
+}
+.textinho {
+    margin-top: 10px;
+    margin-right: 25px;
+    margin-left: 25px;
+    margin-bottom: -10px;
+    text-align: center;
+    font-size: 1rem;
+    color: #6c6c6c;
+}
 .filas {
     font-size: 18px;
     width: 100%;
