@@ -19,6 +19,9 @@ const AlertChama = ({ isOpen, onClose, highlightedSenha }) => {
       </div>
 
       <div className="chama-body">
+        <span class="material-symbols-outlined" onClick={onClose}>
+          check_circle
+        </span>
         <h2>Seu pedido esta pronto!</h2>
         <h3>nº {highlightedSenha}</h3>
         

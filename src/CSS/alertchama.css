@@ -36,15 +36,25 @@
   font-size: 1.0em;
   color: #424242;
   font-weight: 500;
+  margin-top: 10px;
+  text-align: center;
 }
 .chama-body h3 {
-  margin-top: 12px;
-  margin-bottom: -2px;
+  margin-top: -2px;
+  margin-bottom: 6px;
   text-align: center;
   padding-left: 3px;
-  font-size: 1.4em;
-  color: #BE0E19;
-  font-weight: 600;
+  font-size: 1.8em;
+  color: #454545;
+  font-weight: 700;
+}
+.chama-body span {
+  margin-top: 8px;
+  display: flex;
+  font-weight: 700;
+  font-size: 4.7em;
+  color: #29c311;
+  justify-content: center;
 }
 
 .chama-button {
