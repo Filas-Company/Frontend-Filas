@@ -26,7 +26,10 @@ function App() {
   let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
   
   function getData() {
-    fetch('https://backend-filas-production.up.railway.app/fila/list', { method: 'GET' }) //http://localhost:3000/fila/list -- testar Local
+    fetch('https://backend-filas-production.up.railway.app/fila/list', { method: 'GET' })
+    // http://localhost:3000/fila/list 
+    // ou 
+    // https://backend-filas-production.up.railway.app/fila/list
       .then(response => response.json())
       .then(data => setItens(data));
   }
