@@ -25,13 +25,11 @@ function App() {
   const [mostrandoTodos, setMostrandoTodos] = useState(false);
   let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
   
-
   function getData() {
-    fetch('http://localhost:3000/fila/list', { method: 'GET' })
+    fetch('https://backend-filas-production.up.railway.app/fila/list', { method: 'GET' }) //http://localhost:3000/fila/list -- testar Local
       .then(response => response.json())
       .then(data => setItens(data));
   }
-
 
   const handleCloseAlertChama = () => {
     setIsAlertOpenChama(!isAlertOpenChama);
