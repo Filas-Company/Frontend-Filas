@@ -26,7 +26,7 @@ function App() {
   let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
   
   function getData() {
-    fetch('https://backend-filas-production.up.railway.app/fila/list', { method: 'GET' })
+    fetch('http://localhost:3000/fila/list', { method: 'GET' })
     // http://localhost:3000/fila/list 
     // ou 
     // https://backend-filas-production.up.railway.app/fila/list
@@ -145,15 +145,17 @@ function App() {
                     
 
                     <div className="container-prontos">
-                      {itens.map(cadaItem => (
-                        (cadaItem.status === 2) ? (
-                            <Pronto
-                             TrocarHighlight={TrocarHighlight}
-                             item={cadaItem}
-                             highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
-                             log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
-                            />
-                        ) : null
+                    {itens
+                      .filter(cadaItem => cadaItem.status === 2)
+                      .sort((a, b) => b.ordem_criacao - a.ordem_criacao)
+                      .map(cadaItem => (
+                        <Pronto
+                          key={cadaItem.codigo}
+                          TrocarHighlight={TrocarHighlight}
+                          item={cadaItem}
+                          highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
+                          log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
+                        />
                       ))}
                     </div>
                 </div>
