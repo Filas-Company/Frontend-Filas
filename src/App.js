@@ -147,7 +147,7 @@ function App() {
                     <div className="container-prontos">
                     {itens
                       .filter(cadaItem => cadaItem.status === 2)
-                      .sort((a, b) => b.ordem_criacao - a.ordem_criacao)
+                      .sort((a, b) => b.ordem_chamado - a.ordem_chamado)
                       .map(cadaItem => (
                         <Pronto
                           key={cadaItem.codigo}
