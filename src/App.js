@@ -12,6 +12,18 @@ import Pronto from './components/prontos';
 import Proximo from './components/proximos';
 import Chamando from './components/Chamando';
 
+
+const URL_Backend = "http://localhost:3000/fila/list"
+// http://localhost:3000/fila/list 
+// ou 
+// https://backend-filas-production.up.railway.app/fila/list
+
+const URL_Frontend = "http://localhost:8000"
+//http://localhost:8000 
+//ou 
+//https://frontend-filas.vercel.app
+
+
 function App() {
   const [itens, setItens] = useState([]);
   const [jaAbriu, setJaAbriu] = useState(false)
@@ -24,12 +36,9 @@ function App() {
   const [verMais, setVerMais] = useState(true);
   const [mostrandoTodos, setMostrandoTodos] = useState(false);
   let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
-  
+
   function getData() {
-    fetch('http://localhost:3000/fila/list ', { method: 'GET' })
-    // http://localhost:3000/fila/list 
-    // ou 
-    // https://backend-filas-production.up.railway.app/fila/list
+    fetch(URL_Backend, { method: 'GET' })
       .then(response => response.json())
       .then(data => setItens(data));
   }
@@ -37,11 +46,11 @@ function App() {
   const handleCloseAlertChama = () => {
     setIsAlertOpenChama(!isAlertOpenChama);
   }
-  
+
   function TrocarHighlight(item) {
-    setHighlightedSenha(item.codigo===highlightedSenha ? null : item.codigo)
+    setHighlightedSenha(item.codigo === highlightedSenha ? null : item.codigo)
   }
-  
+
   const handleCloseAlert = () => {
     setIsAlertOpen(false);
     setJaAbriu(true)
@@ -102,10 +111,10 @@ function App() {
         <header>
           <nav className="navigation">
             <div class="left-group">
-            <a href="http://localhost:8000" className="logo-link">
-              <img className="seta" src="./img/arrow.png" alt="voltar" />
-              <h1 className="logo">FILA</h1>
-            </a>
+              <a href={URL_Frontend} className="logo-link">
+                <img className="seta" src="./img/arrow.png" alt="voltar" />
+                <h1 className="logo">FILA</h1>
+              </a>
             </div>
             <a href='https://www.hachimitsuoficial.com.br/' className="rest" target='blank'>Hachimitsu</a>
           </nav>
@@ -124,58 +133,60 @@ function App() {
 
           <div></div>
           <div className='chamados'>
-              {mostrandoProntos ? (
-                <div className="nao veio">
-                    <div className='ja-chamados'>
-                      <p>Já chamados:</p>
-                      <button className='ver-chamados-btn' onClick={VerChamados}>
-                        <label>{mostrandoProntos ? "ver menos" : "1 chamados"}
-                        <span class="material-symbols-outlined"
-                        style={{ 
-                          fontSize: "13px", 
-                          verticalAlign: "middle",
-                          marginLeft: "2px",
-                          fontWeight: "500"}}
-                        >
-                          arrow_forward_ios
-                        </span>
-                        </label>
-                      </button>
-                    </div>
-                    
-
-                    <div className="container-prontos">
-                    {itens
-                      .filter(cadaItem => cadaItem.status === 2)
-                      .sort((a, b) => b.ordem_chamado - a.ordem_chamado)
-                      .map(cadaItem => (
-                        <Pronto
-                          key={cadaItem.codigo}
-                          TrocarHighlight={TrocarHighlight}
-                          item={cadaItem}
-                          highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
-                          log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
-                        />
-                      ))}
-                    </div>
-                </div>
-              ) : (
-                <div className='naoveio'>
+            {mostrandoProntos ? (
+              <div className="nao veio">
+                <div className='ja-chamados'>
+                  <p>Já chamados:</p>
                   <button className='ver-chamados-btn' onClick={VerChamados}>
-                    <label>{mostrandoProntos ? "ver menos" : "ver já chamados"}
-                    <span class="material-symbols-outlined"
-                        style={{ 
-                          fontSize: "13px", 
+                    <label>{mostrandoProntos ? "ver menos" : "1 chamados"}
+                      <span class="material-symbols-outlined"
+                        style={{
+                          fontSize: "13px",
                           verticalAlign: "middle",
                           marginLeft: "2px",
-                          fontWeight: "500"}}
-                        >
-                          arrow_forward_ios
-                    </span>
+                          fontWeight: "500"
+                        }}
+                      >
+                        arrow_forward_ios
+                      </span>
                     </label>
                   </button>
                 </div>
-              )}
+
+
+                <div className="container-prontos">
+                  {itens
+                    .filter(cadaItem => cadaItem.status === 2)
+                    .sort((a, b) => b.ordem_chamado - a.ordem_chamado)
+                    .map(cadaItem => (
+                      <Pronto
+                        key={cadaItem.codigo}
+                        TrocarHighlight={TrocarHighlight}
+                        item={cadaItem}
+                        highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
+                        log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
+                      />
+                    ))}
+                </div>
+              </div>
+            ) : (
+              <div className='naoveio'>
+                <button className='ver-chamados-btn' onClick={VerChamados}>
+                  <label>{mostrandoProntos ? "ver menos" : "ver já chamados"}
+                    <span class="material-symbols-outlined"
+                      style={{
+                        fontSize: "13px",
+                        verticalAlign: "middle",
+                        marginLeft: "2px",
+                        fontWeight: "500"
+                      }}
+                    >
+                      arrow_forward_ios
+                    </span>
+                  </label>
+                </button>
+              </div>
+            )}
           </div>
         </div>
         {highlightedSenha ? (
@@ -189,16 +200,16 @@ function App() {
 
                   <button className="ver-tudo" onClick={VerTodos}>
                     <label>{verMais ? "ver todos" : "ver menos"}
-                    <span class="material-symbols-outlined"
-                        style={{ 
-                          fontSize: "13px", 
+                      <span class="material-symbols-outlined"
+                        style={{
+                          fontSize: "13px",
                           verticalAlign: "middle",
                           marginLeft: "2px",
                           fontWeight: "500"
                         }}
-                        >
-                          arrow_forward_ios
-                    </span>
+                      >
+                        arrow_forward_ios
+                      </span>
                     </label>
                   </button>
                 </div>
@@ -227,7 +238,7 @@ function App() {
                   ) : null
                 ))}
                 {!mostrandoTodos && (
-                    <div className='textinho'>
+                  <div className='textinho'>
                     <p>Seu pedido sendo preparado!</p>
                     <p>Você será notificado assim que estiver pronto. 😊</p>
                   </div>
@@ -244,7 +255,7 @@ function App() {
               {itens.map(cadaItem => (
                 cadaItem.status !== 2 && cadaItem.status !== 1 ? (
                   <Proximo
-                  TrocarHighlight={TrocarHighlight}
+                    TrocarHighlight={TrocarHighlight}
                     item={cadaItem}
                     highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
                     log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
