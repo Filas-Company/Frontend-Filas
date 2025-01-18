@@ -26,7 +26,7 @@ function App() {
   let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
   
   function getData() {
-    fetch('http://localhost:3000/fila/list', { method: 'GET' })
+    fetch('http://localhost:3000/fila/list ', { method: 'GET' })
     // http://localhost:3000/fila/list 
     // ou 
     // https://backend-filas-production.up.railway.app/fila/list
