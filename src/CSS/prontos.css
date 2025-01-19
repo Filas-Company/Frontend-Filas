@@ -6,6 +6,11 @@
     font-weight: 400;
 }
 
+.container-chamados {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 .container-prontos {
     width: 100%;
     margin: 0 auto;
@@ -60,6 +65,7 @@
     justify-content: space-between; /* Alinha o conteúdo ao longo do eixo horizontal */
     align-items: center; /* Alinha verticalmente ao centro */ /* Se necessário */
     color: #909090;
+    margin-bottom: 10px;
 }
 .naoveio p {
     margin: 0;
@@ -82,7 +88,10 @@
     cursor: pointer;
     color: #9d9d9d;
     margin-right: 10px;
-    font-weight: 500;
+    font-weight: 800;
+}
+.ver-chamados-btn label {
+    font-weight: 600; /* Torna o texto mais espesso */
 }
 
 .prontos {

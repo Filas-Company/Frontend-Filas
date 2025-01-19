@@ -61,6 +61,7 @@ function App() {
     setHighlightedStatus(foundItem.status);
     setJaAbriu(true)
     console.log("highlightedSenha:", foundItem.codigo);
+    
     if (!singleton) {
       setSingleton(true);
     }
@@ -80,11 +81,6 @@ function App() {
     if (!jaAbriu) {
       setIsAlertOpen(true);
     }
-
-    if (highlightedStatus === 2) {
-      setMostrandoProntos(true);
-    }
-
   }, [singleton, highlightedStatus, jaAbriu, itens]);
 
   return (
@@ -136,25 +132,15 @@ function App() {
             {mostrandoProntos ? (
               <div className="nao veio">
                 <div className='ja-chamados'>
-                  <p>Já chamados:</p>
+                  <p>Já Chamados:</p>
                   <button className='ver-chamados-btn' onClick={VerChamados}>
-                    <label>{mostrandoProntos ? "ver menos" : "1 chamados"}
-                      <span class="material-symbols-outlined"
-                        style={{
-                          fontSize: "13px",
-                          verticalAlign: "middle",
-                          marginLeft: "2px",
-                          fontWeight: "500"
-                        }}
-                      >
-                        arrow_forward_ios
-                      </span>
+                    <label>{mostrandoProntos ? "Ver Menos" : "1 chamados"}
                     </label>
                   </button>
                 </div>
 
 
-                <div className="container-prontos">
+                <div className="container-chamados">
                   {itens
                     .filter(cadaItem => cadaItem.status === 2)
                     .sort((a, b) => b.ordem_chamado - a.ordem_chamado)
@@ -172,17 +158,8 @@ function App() {
             ) : (
               <div className='naoveio'>
                 <button className='ver-chamados-btn' onClick={VerChamados}>
-                  <label>{mostrandoProntos ? "ver menos" : "ver já chamados"}
-                    <span class="material-symbols-outlined"
-                      style={{
-                        fontSize: "13px",
-                        verticalAlign: "middle",
-                        marginLeft: "2px",
-                        fontWeight: "500"
-                      }}
-                    >
-                      arrow_forward_ios
-                    </span>
+                  <label>{mostrandoProntos ? "Ver Menos" : "Ver Chamados"}
+                    
                   </label>
                 </button>
               </div>
@@ -199,17 +176,7 @@ function App() {
                   )}
 
                   <button className="ver-tudo" onClick={VerTodos}>
-                    <label>{verMais ? "ver todos" : "ver menos"}
-                      <span class="material-symbols-outlined"
-                        style={{
-                          fontSize: "13px",
-                          verticalAlign: "middle",
-                          marginLeft: "2px",
-                          fontWeight: "500"
-                        }}
-                      >
-                        arrow_forward_ios
-                      </span>
+                    <label>{verMais ? "Ver Todos" : "Ver Menos"}
                     </label>
                   </button>
                 </div>
@@ -237,10 +204,10 @@ function App() {
                     />
                   ) : null
                 ))}
-                {!mostrandoTodos && (
+                {!mostrandoTodos && highlightedStatus === 3 && (
                   <div className='textinho'>
-                    <p>Seu pedido sendo preparado!</p>
-                    <p>Você será notificado assim que estiver pronto. 😊</p>
+                    <p>Seu pedido está sendo preparado!</p>
+                    <p>😊</p>
                   </div>
                 )}
               </div>

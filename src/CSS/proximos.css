@@ -7,7 +7,8 @@
 
 .container-proximos {
     width: 100%;
-    margin-top: 10px;
+    border-radius: 30px;
+    margin-top: 0px;
     background-color: white;
     padding-top: 1px;
     height: 100vh;
@@ -39,7 +40,7 @@
     padding: 0 15px;
     border-radius: 30px;
     margin: 10px auto 0;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     border: 1px solid #cdcdcd;
     position: relative;
 }
@@ -119,7 +120,7 @@
     padding: 0 15px;
     border-radius: 30px;
     margin: 10px auto 0;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     border: 1px solid #ffcfcf;
     position: relative;
 }
@@ -138,7 +139,8 @@
     grid-template-columns: 1fr 1fr 1fr; /* Três colunas de tamanho igual */
     font-size: 20px;
     height: 30px;
-
+    align-items: center;
+    justify-content: center;
 }
 .senha-user p {
     text-align: center; /* Centraliza o texto do <p> na coluna do meio */
@@ -162,7 +164,10 @@
     padding: 0; 
     cursor: pointer;
     color: #9d9d9d;
-    margin-right: 0px
+    margin-right: 0px;
+}
+.ver-tudo label {
+    font-weight: 600;
 }
 
 .sino {
