@@ -141,6 +141,7 @@
     height: 30px;
     align-items: center;
     justify-content: center;
+    margin-top: 7px;
 }
 .senha-user p {
     text-align: center; /* Centraliza o texto do <p> na coluna do meio */
