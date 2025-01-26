@@ -60,7 +60,16 @@
     align-items: center; /* Alinha verticalmente no centro */
     gap: 10px;
     border: 1px solid #ffffff;
-    border-radius: 20px;
+    border-radius: 50px;
+}
+.div-pessoa span {
+    font-size: 27px;
+    font-weight: 400;
+    margin: 2px;
+    color: rgb(77, 77, 77);
+    padding: 5px;
+    background-color: white;
+    border-radius: 50px;
 }
 .name {
     margin: 0;
@@ -68,13 +77,11 @@
     padding-right: 10px;
 }
 .ver-jachamados {
-    margin-left: px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 11px 10px 11px 10px;
     background-color: white;
     border: none;
     color: rgb(77, 77, 77);
-    border-radius: 20px;
+    border-radius: 50px;
     font-size: 13px;
     font-weight: 600;
 }
@@ -128,14 +135,6 @@
 .ja-chamados p {
     color: #424242;
     font-weight: 700;
-}
-
-.chamando span {
-    font-size: 14px;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: #fff;
 }
 
 .pedidos-prontos {
