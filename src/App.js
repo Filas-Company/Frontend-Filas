@@ -122,6 +122,8 @@ function App() {
                 <Chamando
                   item={cadaItem}
                   highlighted={Number(highlightedSenha) === Number(cadaItem.codigo)}
+                  verChamados={VerChamados}
+                  mostrandoProntos={mostrandoProntos}
                 />
               ) : null
             ))}
@@ -159,7 +161,6 @@ function App() {
               <div className='naoveio'>
                 <button className='ver-chamados-btn' onClick={VerChamados}>
                   <label>{mostrandoProntos ? "Ver Menos" : "Ver Chamados"}
-                    
                   </label>
                 </button>
               </div>
@@ -171,8 +172,10 @@ function App() {
             <ul className="proximo">
               <div className="container-proximos">
                 <div className="senha-user">
-                  {!mostrandoTodos && (
+                  {!mostrandoTodos ? (
                     <p>Sua senha</p>
+                  ):(
+                    <p>Próximos</p>
                   )}
 
                   <button className="ver-tudo" onClick={VerTodos}>
@@ -217,7 +220,6 @@ function App() {
         ) : (
 
           <div className="container-proximos">
-            <p className="p-proximos">Próximos</p>
             <ul className="proximo">
               {itens.map(cadaItem => (
                 cadaItem.status !== 2 && cadaItem.status !== 1 ? (

@@ -1,13 +1,24 @@
-function Chamando({ item }) {
+function Chamando({ item, highlighted, VerChamados, mostrandoProntos }) {
 
     return (
       <li className='chamando'>
         {/*
         <div className='pos'>1º</div>
         */}
-        <p>Senha atual</p>
         <h1>{item.codigo}</h1>
-        <div className='name'>{item.text}</div>
+        <p className="senha-atual">Senha Atual</p>
+        <div className="container-jachamados">
+          <div className="div-pessoa">
+            <span className="material-symbols-outlined">
+              person
+            </span>
+            <p className='name'>{item.text}</p>
+          </div>
+
+          <button className='ver-jachamados' onClick={VerChamados}>
+            {mostrandoProntos ? "Ver Menos" : "Ver Chamados"}
+          </button>
+        </div>
       </li>
     )
   }
