@@ -5,9 +5,7 @@ function Item({ item, updateDocument, deleteDocument, updateFila }) {
   const [tempText, setTempText] = useState("")
 
   return (
-    <li class="filas"
-      style={item.active ? {} : { backgroundColor: "#B17A5B" }}
-    >
+    <li class="filas">
       <div class="lugar">
         <p>{item.ordem}º</p>
       </div>
