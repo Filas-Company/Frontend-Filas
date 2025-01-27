@@ -2,8 +2,8 @@ function Chamando({ item, highlighted, VerChamados, mostrandoProntos }) {
 
     return (
       <li className='chamando'>
-        <h1>{item.codigo}</h1>
         <p className="senha-atual">Senha Atual</p>
+        <h1>{item.codigo}</h1>
         <div className="container-jachamados">
           {item.text && (
             <div className="div-pessoa">

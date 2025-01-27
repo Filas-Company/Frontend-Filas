@@ -35,14 +35,12 @@
     min-height: 100%;
 }
 .chamando h1 {
-    margin-top: 10px;
     margin-left: 15px;
     font-size: 3.2em;
     font-weight: 700;
 }
 .senha-atual {
-    margin-top: -5px;
-    margin-bottom: 15px;
+    margin-top: 20px;
     font-size: 18px;
     margin-left: 15px;
 }
