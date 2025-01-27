@@ -134,7 +134,7 @@ function App() {
             {mostrandoProntos ? (
               <div className="nao veio">
                 <div className='ja-chamados'>
-                  <p>Já Chamados:</p>
+                  <p>Já Chamados</p>
                 </div>
 
 

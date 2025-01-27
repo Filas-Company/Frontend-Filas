@@ -5,6 +5,10 @@
     font-optical-sizing: auto;
     font-weight: 400;
 }
+:root {
+    --cinza: #999999;
+    --cinzaEscuro: #424242;
+}
 
 .container-chamados {
     margin-top: 0px;
@@ -132,10 +136,12 @@
     align-items: center;
     margin-bottom: 10px;
     margin-left: 5px;
+    margin-top: 10px;
 }
 .ja-chamados p {
-    color: #424242;
+    color: var(--cinzaEscuro);
     font-weight: 700;
+    font-size: 17px;
 }
 
 .pedidos-prontos {

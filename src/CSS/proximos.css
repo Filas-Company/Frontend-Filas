@@ -6,6 +6,7 @@
 }
 :root {
     --cinza: #999999;
+    --cinzaEscuro: #424242;
 }
 
 .container-proximos {
@@ -145,9 +146,10 @@
     margin-top: 7px;
 }
 .p-senhauser {
+    color: var(--cinzaEscuro);
     margin-left: 10px;
     grid-column: 1;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
 }
 .senha-user button {
@@ -159,9 +161,10 @@
     margin-right: 10px
 }
 .p-proximos-semhigh {
+    color: var(--cinzaEscuro);
     margin-left: 20px;
     grid-column: 1;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
     margin-top: 2px;
 }
