@@ -144,7 +144,7 @@
     justify-content: center;
     margin-top: 7px;
 }
-.senha-user p {
+.p-senhauser {
     margin-left: 10px;
     grid-column: 1;
     font-size: 18px;
@@ -157,6 +157,13 @@
     color: var(--cinza);
     font-weight: 600;
     margin-right: 10px
+}
+.p-proximos-semhigh {
+    margin-left: 20px;
+    grid-column: 1;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 2px;
 }
 
 

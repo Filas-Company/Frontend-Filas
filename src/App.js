@@ -122,7 +122,7 @@ function App() {
                 <Chamando
                   item={cadaItem}
                   highlighted={Number(highlightedSenha) === Number(cadaItem.codigo)}
-                  verChamados={VerChamados}
+                  VerChamados={VerChamados}
                   mostrandoProntos={mostrandoProntos}
                 />
               ) : null
@@ -135,10 +135,6 @@ function App() {
               <div className="nao veio">
                 <div className='ja-chamados'>
                   <p>Já Chamados:</p>
-                  <button className='ver-chamados-btn' onClick={VerChamados}>
-                    <label>{mostrandoProntos ? "Ver Menos" : "1 chamados"}
-                    </label>
-                  </button>
                 </div>
 
 
@@ -159,10 +155,7 @@ function App() {
               </div>
             ) : (
               <div className='naoveio'>
-                <button className='ver-chamados-btn' onClick={VerChamados}>
-                  <label>{mostrandoProntos ? "Ver Menos" : "Ver Chamados"}
-                  </label>
-                </button>
+                
               </div>
             )}
           </div>
@@ -173,9 +166,9 @@ function App() {
               <div className="container-proximos">
                 <div className="senha-user">
                   {!mostrandoTodos ? (
-                    <p>Sua senha</p>
+                    <p className='p-senhauser'>Sua senha</p>
                   ):(
-                    <p>Próximos</p>
+                    <p className='p-senhauser'>Próximos</p>
                   )}
 
                   <button className="ver-tudo" onClick={VerTodos}>
@@ -220,6 +213,10 @@ function App() {
         ) : (
 
           <div className="container-proximos">
+            <div className="senha-user">
+              <p className='p-proximos-semhigh'>Próximos</p>
+            </div>
+
             <ul className="proximo">
               {itens.map(cadaItem => (
                 cadaItem.status !== 2 && cadaItem.status !== 1 ? (
