@@ -8,12 +8,14 @@ function Chamando({ item, highlighted, VerChamados, mostrandoProntos }) {
         <h1>{item.codigo}</h1>
         <p className="senha-atual">Senha Atual</p>
         <div className="container-jachamados">
-          <div className="div-pessoa">
-            <span className="material-symbols-outlined">
-              person
-            </span>
-            <p className='name'>{item.text}</p>
-          </div>
+          {item.text && (
+            <div className="div-pessoa">
+              <span className="material-symbols-outlined">
+                person
+              </span>
+              <p className='name'>{item.text}</p>
+            </div>
+          )}
 
           <button className='ver-jachamados' onClick={VerChamados}>
             {mostrandoProntos ? "Ver Menos" : "Ver Chamados"}
