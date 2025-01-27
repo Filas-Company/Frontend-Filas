@@ -43,6 +43,14 @@ function App() {
       .then(data => setItens(data));
   }
 
+  function obterHora(hora) {
+    const horaCriacao = new Date(hora);
+    const horas = horaCriacao.getHours();
+    const minutos = horaCriacao.getMinutes();
+    
+    return `${horas}:${minutos}`;
+  }
+
   const handleCloseAlertChama = () => {
     setIsAlertOpenChama(!isAlertOpenChama);
   }
@@ -77,7 +85,7 @@ function App() {
   };
 
   useEffect(() => {
-    getData(); // Função que obtém dados da fila.
+    getData();
     if (!jaAbriu) {
       setIsAlertOpen(true);
     }
@@ -176,7 +184,6 @@ function App() {
                     </label>
                   </button>
                 </div>
-
                 {itens.map(cadaItem => (
                   (cadaItem.status === 3) && !mostrandoTodos ? (
                     highlightedSenha === cadaItem.codigo ? (
@@ -185,6 +192,7 @@ function App() {
                         item={cadaItem}
                         highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
                         log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
+                        obterHora={obterHora}
                       />
                     ) : null
                   ) : null
@@ -197,6 +205,7 @@ function App() {
                       item={cadaItem}
                       highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
                       log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
+                      obterHora={obterHora}
                     />
                   ) : null
                 ))}
@@ -224,7 +233,8 @@ function App() {
                     TrocarHighlight={TrocarHighlight}
                     item={cadaItem}
                     highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
-                    log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
+                    log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)} 
+                    obterHora={obterHora}
                   />
                 ) : null
               ))}

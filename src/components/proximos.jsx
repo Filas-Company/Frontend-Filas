@@ -1,4 +1,4 @@
-function Proximo({ item, highlighted, TrocarHighlight}) {
+function Proximo({ item, highlighted, TrocarHighlight, obterHora }) {
   return (
     <li className={`filas ${highlighted ? 'highlighted' : ''}`}>
       {/*
@@ -6,7 +6,9 @@ function Proximo({ item, highlighted, TrocarHighlight}) {
         <p>{(item.ordem)+1}º</p>
       </div>
       */}
-      
+      <p>
+        { obterHora(item.hora_criacao) }
+      </p>
       <p className="senha">
         {
           item.codigo
