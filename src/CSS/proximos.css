@@ -5,7 +5,7 @@
     font-optical-sizing: auto;
 }
 :root {
-    --cinza: #999999;
+    --cinzaClaro: #999999;
     --cinzaEscuro: #424242;
 }
 
@@ -30,7 +30,7 @@
     margin-bottom: -10px;
     text-align: center;
     font-size: 1rem;
-    color: #6c6c6c;
+    color: var(--cinzaEscuro);
 }
 .filas {
     font-size: 18px;
@@ -65,8 +65,10 @@
     font-weight: 300;
     font-size: 1.7em;  
 }
-.code {
-    margin-right: 10px;
+.nome-text {
+}
+.hora-text {
+    color: var(--cinzaClaro);
 }
 
 .buttons {
@@ -156,7 +158,7 @@
     grid-column: 3; 
     text-align: end;
     margin-right: auto;
-    color: var(--cinza);
+    color: var(--cinzaClaro);
     font-weight: 600;
     margin-right: 10px
 }
@@ -176,7 +178,7 @@
     color: inherit;
     padding: 0; 
     cursor: pointer;
-    color: #9d9d9d;
+    color: var(--cinzaClaro);
     margin-right: 0px;
 }
 .ver-tudo label {
@@ -186,7 +188,7 @@
 .sino {
     font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 200, 'opsz' 48;
     font-size: 35px; /* Ajuste o tamanho */
-    color: #9d9d9d; /* Cor do ícone */
+    color: var(--cinzaClaro); /* Cor do ícone */
     margin-right: 8px;
     cursor: pointer;
 }

@@ -45,8 +45,8 @@ function App() {
 
   function obterHora(hora) {
     const horaCriacao = new Date(hora);
-    const horas = horaCriacao.getHours();
-    const minutos = horaCriacao.getMinutes();
+    const horas = horaCriacao.getHours().toString().padStart(2, '0');
+    const minutos = horaCriacao.getMinutes().toString().padStart(2, '0');
     
     return `${horas}:${minutos}`;
   }
