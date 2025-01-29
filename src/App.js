@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './CSS/alert.css';
 import './CSS/alertchama.css';
 import './CSS/styles.css';
@@ -35,6 +35,8 @@ function App() {
   const [mostrandoProntos, setMostrandoProntos] = useState(false);
   const [verMais, setVerMais] = useState(true);
   const [mostrandoTodos, setMostrandoTodos] = useState(false);
+  const [notificationSent, setNotificationSent] = useState(false);
+  
   let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
 
   function getData() {
@@ -47,7 +49,7 @@ function App() {
     const horaCriacao = new Date(hora);
     const horas = horaCriacao.getHours().toString().padStart(2, '0');
     const minutos = horaCriacao.getMinutes().toString().padStart(2, '0');
-    
+
     return `${horas}:${minutos}`;
   }
 
@@ -69,7 +71,7 @@ function App() {
     setHighlightedStatus(foundItem.status);
     setJaAbriu(true)
     console.log("highlightedSenha:", foundItem.codigo);
-    
+
     if (!singleton) {
       setSingleton(true);
     }
@@ -84,12 +86,33 @@ function App() {
     setMostrandoTodos(!mostrandoTodos);
   };
 
+  const handleShowNotification = useCallback(() => {
+    if (Notification.permission === "granted" && !notificationSent) {
+      new Notification("Seu pedido está pronto!", {
+        body: `Número: ${highlightedSenha}`,
+        icon: "/check-icon.png"
+      });
+      setNotificationSent(true);
+    }
+  }, [notificationSent, highlightedSenha]);
+
   useEffect(() => {
     getData();
+
     if (!jaAbriu) {
       setIsAlertOpen(true);
     }
-  }, [singleton, highlightedStatus, jaAbriu, itens]);
+
+    if ("Notification" in window) {
+      Notification.requestPermission().then(permission => {
+        console.log("Permissão de notificação:", permission);
+      });
+    }
+
+    if (highlightedItem?.status === 1 && !notificationSent) {
+      handleShowNotification();
+    }
+  }, [singleton, highlightedStatus, jaAbriu, itens, highlightedItem, notificationSent, handleShowNotification]);
 
   return (
     <div className="App">
@@ -103,11 +126,14 @@ function App() {
       </div>
       <div>
         {highlightedItem && highlightedItem.status === 1 && (
-          <AlertChama
-            isOpen={isAlertOpenChama}
-            onClose={handleCloseAlertChama}
-            highlightedSenha={highlightedSenha}
-          />
+          <>
+            <AlertChama
+              isOpen={isAlertOpenChama}
+              onClose={handleCloseAlertChama}
+              highlightedSenha={highlightedSenha}
+            />
+            {handleShowNotification()}
+          </>
         )}
       </div>
 
@@ -163,7 +189,7 @@ function App() {
               </div>
             ) : (
               <div className='naoveio'>
-                
+
               </div>
             )}
           </div>
@@ -175,7 +201,7 @@ function App() {
                 <div className="senha-user">
                   {!mostrandoTodos ? (
                     <p className='p-senhauser'>Sua senha</p>
-                  ):(
+                  ) : (
                     <p className='p-senhauser'>Próximos</p>
                   )}
 
@@ -233,7 +259,7 @@ function App() {
                     TrocarHighlight={TrocarHighlight}
                     item={cadaItem}
                     highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
-                    log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)} 
+                    log={() => console.log(`highlightedSenha: ${highlightedSenha}, cadaItem.codigo: ${cadaItem.codigo}`)}
                     obterHora={obterHora}
                   />
                 ) : null
