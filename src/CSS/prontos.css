@@ -6,8 +6,11 @@
     font-weight: 400;
 }
 :root {
-    --cinza: #999999;
-    --cinzaEscuro: #424242;
+    --cinzaClaro: #999999;
+    --cinzaEscuro: #757575;
+    --corPrincipal: #FDB92E;
+    --corPClaro: #ffcb64;
+    --corPEscuro: #b37700;
 }
 
 .container-chamados {
@@ -29,7 +32,7 @@
     display: flex;
     flex-direction: column;
     color: #fff;
-    background-color: #BE0E19;
+    background-color: black;
     border-radius: 30px;
     position: relative;
     min-height: 100%;
@@ -53,7 +56,7 @@
     align-items: center;
     padding-bottom: 30px;
     padding-top: 20px;
-    border-top: 1px solid #ffffff;
+    border-top: 1px solid var(--corPrincipal);
     margin-left: 15px;
     margin-right: 15px;
 }
@@ -83,7 +86,7 @@
     padding: 11px 10px 11px 10px;
     background-color: white;
     border: none;
-    color: rgb(77, 77, 77);
+    color: black;
     border-radius: 50px;
     font-size: 13px;
     font-weight: 600;
@@ -137,7 +140,7 @@
     margin-top: 10px;
 }
 .ja-chamados p {
-    color: var(--cinzaEscuro);
+    color: var(--cinzaClaro);
     font-weight: 700;
     font-size: 17px;
 }

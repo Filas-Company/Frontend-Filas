@@ -76,11 +76,11 @@
 
 .cancel-button {
   background-color: white;
-  color: #B17A5B;
-  border: 1px solid #B17A5B;
+  color: var(--corPrincipal);
+  border: 1px solid var(--corPrincipal);
 }
 
 .confirm-button {
-  background-color: #B17A5B;
+  background-color: var(--corPrincipal);
   color: white;
 }

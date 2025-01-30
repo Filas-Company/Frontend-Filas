@@ -15,9 +15,12 @@ function Proximo({ item, highlighted, TrocarHighlight, obterHora }) {
       {
         item.text
         ?
-        <p className="nome-text">{item.text}</p>
+        <p className="nome-text">{item.text}
+        </p>
         :
-        <p className="hora-text">{obterHora(item.hora_criacao)}</p>
+        <p className={`${highlighted ? 'hora-actived' : 'hora'}`}>
+          {obterHora(item.hora_criacao)}
+        </p>
       }
 
       {highlighted ? 

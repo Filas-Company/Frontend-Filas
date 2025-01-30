@@ -6,7 +6,10 @@
 }
 :root {
     --cinzaClaro: #999999;
-    --cinzaEscuro: #424242;
+    --cinzaEscuro: #757575;
+    --corPrincipal: #FDB92E;
+    --corPClaro: #ffcb64;
+    --corPEscuro: #b37700;
 }
 
 .container-proximos {
@@ -30,7 +33,7 @@
     margin-bottom: -10px;
     text-align: center;
     font-size: 1rem;
-    color: var(--cinzaEscuro);
+    color: var(--cinzaClaro);
 }
 .filas {
     font-size: 18px;
@@ -63,13 +66,14 @@
     transform: translateX(-50%);
     text-align: center;
     font-weight: 300;
-    font-size: 1.7em;  
+    font-size: 30px;  
 }
 .nome-text {
 }
-.hora-text {
+.hora {
     color: var(--cinzaClaro);
 }
+
 
 .buttons {
     display: flex;
@@ -95,7 +99,7 @@
     justify-content: center;
     height: 40px;
     width: 40px;
-    background-color: #BE0E19;
+    background-color: var(--corPrincipal);
     border-radius: 30px;
     font-weight: 900px;
 }
@@ -115,26 +119,26 @@
 .prontos {
     font-size: 18px;
     width: 100%;
-    background-color: #ffeaea;
+    background-color: var(--cinzaClaro);
     height: 70px;
     display: flex;
-    color: #BE0E19;
+    color: white;
     align-items: center;
     justify-content: space-between;
     padding: 0 15px;
     border-radius: 20px;
     margin: 10px auto 0;
     margin-bottom: 15px;
-    border: 1px solid #ffcfcf;
     position: relative;
 }
 
 .highlighted {
-    background-color: #B17A5B;
+    background-color: var(--corPrincipal);
     color: white;
     font-weight: 800;
+    margin-bottom: 14px;
 }
-.highlighted p {
+.highlighted .senha {
     font-weight: 700;
 }
 
@@ -148,7 +152,7 @@
     margin-top: 7px;
 }
 .p-senhauser {
-    color: var(--cinzaEscuro);
+    color: var(--cinzaClaro);
     margin-left: 10px;
     grid-column: 1;
     font-size: 17px;
@@ -159,11 +163,11 @@
     text-align: end;
     margin-right: auto;
     color: var(--cinzaClaro);
-    font-weight: 600;
+    font-weight: 500;
     margin-right: 10px
 }
 .p-proximos-semhigh {
-    color: var(--cinzaEscuro);
+    color: var(--cinzaClaro);
     margin-left: 20px;
     grid-column: 1;
     font-size: 17px;
@@ -182,20 +186,21 @@
     margin-right: 0px;
 }
 .ver-tudo label {
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 .sino {
     font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 200, 'opsz' 48;
-    font-size: 35px; /* Ajuste o tamanho */
+    font-size: 30px; /* Ajuste o tamanho */
     color: var(--cinzaClaro); /* Cor do ícone */
-    margin-right: 8px;
+    margin-right: 0px;
     cursor: pointer;
 }
 .sinoactive {
-    font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 200, 'opsz' 48;
-    font-size: 35px; /* Ajuste o tamanho */
+    font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 200, 'opsz' 48;
+    font-size: 30px; /* Ajuste o tamanho */
     color: #ffffff; /* Cor do ícone */
-    margin-right: 8px;
+    margin-right: 0px;
     cursor: pointer;
 }

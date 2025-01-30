@@ -13,12 +13,12 @@ import Proximo from './components/proximos';
 import Chamando from './components/Chamando';
 
 
-const URL_Backend = "https://backend-filas-production.up.railway.app/fila/list"
+const URL_Backend = "http://localhost:3000/fila/list "
 // http://localhost:3000/fila/list 
 // ou 
 // https://backend-filas-production.up.railway.app/fila/list
 
-const URL_Frontend = "https://frontend-filas.vercel.app"
+const URL_Frontend = "http://localhost:8000 "
 //http://localhost:8000 
 //ou 
 //https://frontend-filas.vercel.app
@@ -141,12 +141,14 @@ function App() {
         <header>
           <nav className="navigation">
             <div class="left-group">
-              <a href={URL_Frontend} className="logo-link">
-                <img className="seta" src="./img/arrow.png" alt="voltar" />
-                <h1 className="logo">FILA</h1>
+              <a href="https://koalasushiya.com.br/" className="logo-link">
+                <span class="material-symbols-outlined">
+                  arrow_back_ios
+                </span>
+                <h1 className="logo">Koala</h1>
               </a>
             </div>
-            <a href='https://www.hachimitsuoficial.com.br/' className="rest" target='blank'>Hachimitsu</a>
+            <a href={URL_Frontend} className="rest" target='blank'>Fila Online</a>
           </nav>
         </header>
         <div className="container-prontos">
@@ -200,7 +202,7 @@ function App() {
               <div className="container-proximos">
                 <div className="senha-user">
                   {!mostrandoTodos ? (
-                    <p className='p-senhauser'>Sua senha</p>
+                    <p className='p-senhauser'>Sua Senha</p>
                   ) : (
                     <p className='p-senhauser'>Próximos</p>
                   )}
