@@ -1,3 +1,12 @@
+:root {
+  --cinzaClarinho: #f4f4f4;
+  --cinzaClaro: #999999;
+  --cinzaEscuro: #424242;
+  --corPrincipal: #FDB92E;
+  --corPClaro: #ffcb64;
+  --corPEscuro: #b37700;
+}
+
 .custom-modal {
   position: absolute;
   top: 50%;
@@ -38,23 +47,25 @@
 .input-number {
   padding: 10px;
   margin-bottom: 30px;
-  margin-top: 13px;
-  font-size: 1.1em;
-  border: 1px solid #ccc;
+  margin-top: 20px;
+  color: black;
+  font-size: 16px;
+  border: 1px solid var(--cinzaClarinho);
   border-radius: 24px;
-  color: #424242;
-  font-weight: 600;
+  background-color: var(--cinzaClarinho);
+  font-weight: 400;
   width: 100%; /* Ajusta a largura ao tamanho do container */
   max-width: 300px; /* Largura máxima */
-  height: 50px;
+  height: 45px;
   box-sizing: border-box; /* Inclui padding e border na largura e altura */
 }
 
 .alert-text {
-  padding-left: 3px;
-  font-size: 1.1em;
-  color: #424242;
+  font-size: 19px;
+  color: black;
   font-weight: 600;
+  margin-top: 15px;
+  text-align: center;
 }
 
 .modal-buttons {
@@ -72,6 +83,7 @@
   font-weight: 600;
   cursor: pointer;
   border: none;
+  margin-bottom: 14px;
 }
 
 .cancel-button {
