@@ -13,12 +13,12 @@ import Proximo from './components/proximos';
 import Chamando from './components/Chamando';
 
 
-const URL_Backend = "https://backend-filas-production.up.railway.app/fila/list"
+const URL_Backend = "http://localhost:3000/fila/list "
 // http://localhost:3000/fila/list 
 // ou 
 // https://backend-filas-production.up.railway.app/fila/list
 
-const URL_Frontend = "https://frontend-filas.vercel.app"
+const URL_Frontend = "http://localhost:8000"
 //http://localhost:8000 
 //ou 
 //https://frontend-filas.vercel.app
