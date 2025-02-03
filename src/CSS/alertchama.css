@@ -1,3 +1,12 @@
+:root {
+  --cinzaClarinho: #f4f4f4;
+  --cinzaClaro: #999999;
+  --cinzaEscuro: #424242;
+  --corPrincipal: #FDB92E;
+  --corPClaro: #ffcb64;
+  --corPEscuro: #b37700;
+}
+
 .chama {
   position: absolute;
   top: 50%;
@@ -26,7 +35,7 @@
   border: none;
   background-color: white;
   font-size: 22px;
-  color:#8a8a8a;
+  color:var(--cinzaClaro);
   font-weight: 400;
   
 }
@@ -34,7 +43,7 @@
 .chama-body h2 {
   padding-left: 3px;
   font-size: 1.0em;
-  color: #424242;
+  color: var(--cinzaEscuro);
   font-weight: 500;
   margin-top: 10px;
   text-align: center;
@@ -45,7 +54,7 @@
   text-align: center;
   padding-left: 3px;
   font-size: 1.8em;
-  color: #454545;
+  color: preto;
   font-weight: 700;
 }
 .chama-body span {
@@ -71,9 +80,9 @@
   font-size: 16px;
   cursor: pointer;
   border: none;
-  background-color: #B17A5B;
+  background-color: var(--corPrincipal);
   color: white;
-  border: 1px solid #B17A5B;
+  border: 1px solid var(--corPrincipal);
   font-weight: 600;
 }
 
@@ -87,6 +96,6 @@
   cursor: pointer;
   border: none;
   background-color: white;
-  color: #B17A5B;
-  border: 1px solid #B17A5B;
+  color: var(--corPrincipal);
+  border: 1px solid var(--corPrincipal);
 }
