@@ -82,7 +82,8 @@
     font-size: 27px;
     font-weight: 400;
     margin: 2px;
-    color: rgb(77, 77, 77);
+    color: black;
+    font-variation-settings: 'FILL' 1;
     padding: 5px;
     background-color: white;
     border-radius: 50px;
