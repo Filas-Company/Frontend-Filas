@@ -38,14 +38,14 @@
     min-height: 100%;
 }
 .chamando h1 {
-    margin-left: 15px;
+    margin-left: 20px;
     font-size: 3.2em;
     font-weight: 700;
 }
 .senha-atual {
     margin-top: 20px;
     font-size: 18px;
-    margin-left: 15px;
+    margin-left: 20px;
 }
 .container-jachamados {
     margin-top: 10px;
@@ -57,8 +57,18 @@
     padding-bottom: 30px;
     padding-top: 20px;
     border-top: 1px solid var(--corPrincipal);
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.cima-chamando {
+    display: flex;
+}
+.cima-chamando span {
+    color: white;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-right: 20px;
 }
 
 .div-pessoa {

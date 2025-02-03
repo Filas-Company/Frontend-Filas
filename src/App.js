@@ -37,6 +37,8 @@ function App() {
   const [mostrandoTodos, setMostrandoTodos] = useState(false);
   const [notificationSent, setNotificationSent] = useState(false);
   const [ultimoChamado, setUltimoChamado] = useState(null);
+  const [ativarSom, setAtivarSom] = useState(true);
+
 
   let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
 
@@ -88,6 +90,8 @@ function App() {
   };
 
   function falarChamando(senha) {
+    if (!ativarSom) return;
+
     const synth = window.speechSynthesis;
     //const senhaSoletrada = senha.toString().split('').join(' '); // Transforma "123" em "1 2 3"
     
@@ -104,10 +108,10 @@ function App() {
         }, delay);
     };
 
-    falarTexto("Chamando", 0);         // Fala "Chamando" imediatamente
-    falarTexto("Senha", 0);         // Espera 0.3s e fala "Senha"
-    falarTexto(senha, 0);  // Espera 3s e soletra a senha
-}
+    falarTexto("Chamando", 0);
+    falarTexto("Senha", 0);
+    falarTexto(senha, 0);
+  }
 
   const handleShowNotification = useCallback(() => {
     if (Notification.permission === "granted" && !notificationSent) {
@@ -191,6 +195,8 @@ function App() {
                   highlighted={Number(highlightedSenha) === Number(cadaItem.codigo)}
                   VerChamados={VerChamados}
                   mostrandoProntos={mostrandoProntos}
+                  ativarSom={ativarSom}
+                  setAtivarSom={setAtivarSom}
                 />
               ) : null
             ))}

@@ -1,8 +1,24 @@
-function Chamando({ item, highlighted, VerChamados, mostrandoProntos }) {
+function Chamando({ item, highlighted, VerChamados, mostrandoProntos, ativarSom, setAtivarSom }) {
 
     return (
       <li className='chamando'>
-        <p className="senha-atual">Senha Atual</p>
+        <div className="cima-chamando">
+          <p className="senha-atual">Senha Atual</p>
+
+          {ativarSom ? 
+            <span 
+            onClick={() => setAtivarSom(!ativarSom)}
+            className="material-symbols-outlined sinoactive">
+              volume_up
+            </span>
+            : 
+            <span 
+            onClick={() => setAtivarSom(!ativarSom)}
+            className="material-symbols-outlined sino">
+              volume_off
+            </span>
+          }
+        </div>
         <h1>{item.codigo}</h1>
         <div className="container-jachamados">
           {item.text && (
