@@ -101,10 +101,6 @@ function App() {
             utterance.lang = 'pt-BR';
             utterance.rate = 0.9; // Velocidade
             synth.speak(utterance);
-
-            if (navigator.vibrate) {
-              navigator.vibrate([200, 100, 200]); // Vibra por 200ms, pausa 100ms e vibra mais 200ms
-            }
         }, delay);
     };
 
