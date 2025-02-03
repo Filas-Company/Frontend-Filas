@@ -13,12 +13,12 @@ import Proximo from './components/proximos';
 import Chamando from './components/Chamando';
 
 
-const URL_Backend = "https://backend-filas-production.up.railway.app/fila/list"
+const URL_Backend = "http://localhost:3000/fila/list"
 // http://localhost:3000/fila/list 
 // ou 
 // https://backend-filas-production.up.railway.app/fila/list
 
-const URL_Frontend = "https://frontend-filas.vercel.app"
+const URL_Frontend = "http://localhost:8000"
 //http://localhost:8000 
 //ou 
 //https://frontend-filas.vercel.app
@@ -113,6 +113,27 @@ function App() {
     falarTexto(senha, 0);
   }
 
+  function falarHighlighted(senha) {
+    const synth = window.speechSynthesis;
+    
+    const falarTexto = (texto, delay) => {
+        setTimeout(() => {
+            const utterance = new SpeechSynthesisUtterance(texto);
+            utterance.lang = 'pt-BR';
+            utterance.rate = 0.9;
+            synth.speak(utterance);
+
+            if (navigator.vibrate) {
+              navigator.vibrate([200, 100, 200]); // Vibra por 200ms, pausa 100ms e vibra mais 200ms
+            }
+        }, delay);
+    };
+
+    falarTexto("Sua Senha está sendo chamada", 0);
+    falarTexto("Senha", 0);
+    falarTexto(senha, 0);
+  }
+
   const handleShowNotification = useCallback(() => {
     if (Notification.permission === "granted" && !notificationSent) {
       new Notification("Seu pedido está pronto!", {
@@ -142,9 +163,14 @@ function App() {
     }
 
     const itemChamando = itens.find(item => item.status === 1);
-    if (itemChamando && itemChamando.codigo !== ultimoChamado) {
+    if ((itemChamando && itemChamando.codigo !== ultimoChamado) && (itemChamando.codigo !== highlightedItem?.codigo)) {
       falarChamando(itemChamando.codigo);
       setUltimoChamado(itemChamando.codigo);
+    }
+
+    if ((highlightedItem?.status === 1) && (highlightedItem?.codigo !== ultimoChamado)) {
+      falarHighlighted(highlightedItem.codigo);
+      setUltimoChamado(highlightedItem.codigo);
     }
 
   }, [singleton, highlightedStatus, jaAbriu, itens, highlightedItem, notificationSent, handleShowNotification]);
