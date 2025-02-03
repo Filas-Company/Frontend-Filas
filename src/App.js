@@ -13,12 +13,12 @@ import Proximo from './components/proximos';
 import Chamando from './components/Chamando';
 
 
-const URL_Backend = "http://localhost:3000/fila/list "
+const URL_Backend = "http://localhost:3000/fila/list"
 // http://localhost:3000/fila/list 
 // ou 
 // https://backend-filas-production.up.railway.app/fila/list
 
-const URL_Frontend = "http://localhost:8000"
+const URL_Frontend = "http://localhost:8000 "
 //http://localhost:8000 
 //ou 
 //https://frontend-filas.vercel.app
@@ -36,6 +36,7 @@ function App() {
   const [verMais, setVerMais] = useState(true);
   const [mostrandoTodos, setMostrandoTodos] = useState(false);
   const [notificationSent, setNotificationSent] = useState(false);
+  const [ultimoChamado, setUltimoChamado] = useState(null);
 
   let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
 
@@ -86,6 +87,28 @@ function App() {
     setMostrandoTodos(!mostrandoTodos);
   };
 
+  function falarChamando(senha) {
+    const synth = window.speechSynthesis;
+    //const senhaSoletrada = senha.toString().split('').join(' '); // Transforma "123" em "1 2 3"
+    
+    const falarTexto = (texto, delay) => {
+        setTimeout(() => {
+            const utterance = new SpeechSynthesisUtterance(texto);
+            utterance.lang = 'pt-BR';
+            utterance.rate = 0.9; // Velocidade
+            synth.speak(utterance);
+
+            if (navigator.vibrate) {
+              navigator.vibrate([200, 100, 200]); // Vibra por 200ms, pausa 100ms e vibra mais 200ms
+            }
+        }, delay);
+    };
+
+    falarTexto("Chamando", 0);         // Fala "Chamando" imediatamente
+    falarTexto("Senha", 0);         // Espera 0.3s e fala "Senha"
+    falarTexto(senha, 0);  // Espera 3s e soletra a senha
+}
+
   const handleShowNotification = useCallback(() => {
     if (Notification.permission === "granted" && !notificationSent) {
       new Notification("Seu pedido está pronto!", {
@@ -97,6 +120,7 @@ function App() {
   }, [notificationSent, highlightedSenha]);
 
   useEffect(() => {
+    
     getData();
 
     if (!jaAbriu) {
@@ -112,6 +136,13 @@ function App() {
     if (highlightedItem?.status === 1 && !notificationSent) {
       handleShowNotification();
     }
+
+    const itemChamando = itens.find(item => item.status === 1);
+    if (itemChamando && itemChamando.codigo !== ultimoChamado) {
+      falarChamando(itemChamando.codigo);
+      setUltimoChamado(itemChamando.codigo);
+    }
+
   }, [singleton, highlightedStatus, jaAbriu, itens, highlightedItem, notificationSent, handleShowNotification]);
 
   return (
