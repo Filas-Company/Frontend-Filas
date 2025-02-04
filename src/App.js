@@ -106,7 +106,7 @@ function App() {
         setTimeout(() => {
             const utterance = new SpeechSynthesisUtterance(texto);
             utterance.lang = 'pt-BR';
-            utterance.rate = 0.9; // Velocidade
+            utterance.rate = 1; // Velocidade
             synth.speak(utterance);
         }, delay);
     };
