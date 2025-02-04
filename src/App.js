@@ -73,6 +73,9 @@ function App() {
     setHighlightedSenha(foundItem.codigo);
     setIsAlertOpen(false);
     setHighlightedStatus(foundItem.status);
+    if(foundItem.status === 2) {
+      VerChamados()
+    }
     setJaAbriu(true)
     console.log("highlightedSenha:", foundItem.codigo);
 
