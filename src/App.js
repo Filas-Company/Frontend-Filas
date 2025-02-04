@@ -301,7 +301,7 @@ function App() {
                 ))}
                 {!mostrandoTodos && highlightedStatus === 3 && (
                   <div className='textinho'>
-                    <p>Seu pedido está sendo preparado!</p>
+                    <p>Te avisaremos na sua vez!</p>
                     <p>😊</p>
                   </div>
                 )}
