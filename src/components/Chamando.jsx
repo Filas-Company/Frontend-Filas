@@ -1,4 +1,4 @@
-function Chamando({ item, highlighted, VerChamados, mostrandoProntos, ativarSom, setAtivarSom }) {
+function Chamando({ item, highlighted, VerChamados, mostrandoProntos, ativarSom, setAtivarSom, ativo }) {
 
     return (
       <li className='chamando'>
@@ -30,8 +30,12 @@ function Chamando({ item, highlighted, VerChamados, mostrandoProntos, ativarSom,
             </div>
           )}
 
-          <button className='ver-jachamados' onClick={VerChamados}>
-            {mostrandoProntos ? "Ver Menos" : "Ver Chamados"}
+          <button 
+          className={`ver-jachamados ${ativo ? "ativo" : ""}`}
+          onClick={VerChamados}>
+            <span class="material-symbols-outlined">
+              history
+            </span>
           </button>
         </div>
       </li>

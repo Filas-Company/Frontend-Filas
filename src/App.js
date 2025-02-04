@@ -38,6 +38,7 @@ function App() {
   const [notificationSent, setNotificationSent] = useState(false);
   const [ultimoChamado, setUltimoChamado] = useState(null);
   const [ativarSom, setAtivarSom] = useState(true);
+  const [ativo, setAtivo] = useState(false);
 
 
   let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
@@ -81,6 +82,7 @@ function App() {
   };
 
   function VerChamados() {
+    setAtivo(!ativo)
     setMostrandoProntos(!mostrandoProntos);
   };
 
@@ -219,6 +221,7 @@ function App() {
                   mostrandoProntos={mostrandoProntos}
                   ativarSom={ativarSom}
                   setAtivarSom={setAtivarSom}
+                  ativo={ativo}
                 />
               ) : null
             ))}

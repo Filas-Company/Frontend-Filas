@@ -94,14 +94,23 @@
     margin-left: -5px;
 }
 .ver-jachamados {
-    padding: 12px 10px 12px 10px;
-    background-color: white;
+    padding: 8px;
+    background-color: black;
     border: none;
-    color: black;
+    color: white;
     border-radius: 50px;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    border: 1px solid white;
+}
+.ver-jachamados span {
+}
+.ver-jachamados.ativo {
+    background-color: white;
+    color: var(--corPrincipal);
 }
 
 .naoveio {
