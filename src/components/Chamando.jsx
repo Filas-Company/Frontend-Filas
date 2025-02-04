@@ -1,7 +1,7 @@
-function Chamando({ item, highlighted, VerChamados, mostrandoProntos, ativarSom, setAtivarSom, ativo }) {
+function Chamando({ item, highlighted, VerChamados, mostrandoProntos, ativarSom, setAtivarSom, ativo, blink }) {
 
     return (
-      <li className='chamando'>
+      <li className={`chamando ${blink ? "piscar" : ""}`}>
         <div className="cima-chamando">
           <p className="senha-atual">Senha Atual</p>
 

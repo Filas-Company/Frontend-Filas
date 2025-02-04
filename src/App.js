@@ -39,7 +39,7 @@ function App() {
   const [ultimoChamado, setUltimoChamado] = useState(null);
   const [ativarSom, setAtivarSom] = useState(true);
   const [ativo, setAtivo] = useState(false);
-
+  const [blink, setBlink] = useState(false);
 
   let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
 
@@ -59,6 +59,8 @@ function App() {
 
   const handleCloseAlertChama = () => {
     setIsAlertOpenChama(!isAlertOpenChama);
+  }
+  const handleConfirmAlertChama = () => {
   }
 
   function TrocarHighlight(item) {
@@ -146,7 +148,6 @@ function App() {
   }, [notificationSent, highlightedSenha]);
 
   useEffect(() => {
-    
     getData();
 
     if (!jaAbriu) {
@@ -177,6 +178,9 @@ function App() {
       setUltimoChamado(highlightedItem.codigo);
     }
 
+    setBlink(true);
+    const timeout = setTimeout(() => setBlink(false), 500); // Pisca por 500ms
+    return () => clearTimeout(timeout);
   }, [singleton, highlightedStatus, jaAbriu, itens, highlightedItem, notificationSent, handleShowNotification]);
 
   return (
@@ -195,6 +199,7 @@ function App() {
             <AlertChama
               isOpen={isAlertOpenChama}
               onClose={handleCloseAlertChama}
+              onConfirm={handleConfirmAlertChama}
               highlightedSenha={highlightedSenha}
             />
             {handleShowNotification()}
@@ -228,6 +233,7 @@ function App() {
                   ativarSom={ativarSom}
                   setAtivarSom={setAtivarSom}
                   ativo={ativo}
+                  blink={blink}
                 />
               ) : null
             ))}
