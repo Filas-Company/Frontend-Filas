@@ -258,7 +258,7 @@ function App() {
             )}
           </div>
         </div>
-        {highlightedSenha ? (
+        {highlightedItem?.status === 3 ? (
           <div className="container-proximos">
             <ul className="proximo">
               <div className="container-proximos">
@@ -299,7 +299,7 @@ function App() {
                     />
                   ) : null
                 ))}
-                {!mostrandoTodos && highlightedStatus === 3 && (
+                {!mostrandoTodos && highlightedItem.status === 3 &&(
                   <div className='textinho'>
                     <p>Te avisaremos na sua vez!</p>
                     <p>😊</p>
