@@ -13,13 +13,13 @@ import Proximo from './components/proximos';
 import Chamando from './components/Chamando';
 
 
-const URL_Backend = "https://backend-filas-production.up.railway.app/fila/list"
-// http://localhost:3000/fila/list 
+const URL_Backend = "http://localhost:3000/fila/list"
+// http://localhost:3000/fila/list
 // ou 
 // https://backend-filas-production.up.railway.app/fila/list
 
-const URL_Frontend = "https://frontend-filas.vercel.app"
-//http://localhost:8000 
+const URL_Frontend = "http://localhost:8000"
+//http://localhost:8000
 //ou 
 //https://frontend-filas.vercel.app
 
@@ -40,6 +40,7 @@ function App() {
   const [ativarSom, setAtivarSom] = useState(true);
   const [ativo, setAtivo] = useState(false);
   const [blink, setBlink] = useState(false);
+
 
   let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
 
@@ -98,54 +99,74 @@ function App() {
 
   function falarChamando(senha) {
     if (!ativarSom) return;
-
     const synth = window.speechSynthesis;
-    //const senhaSoletrada = senha.toString().split('').join(' '); // Transforma "123" em "1 2 3"
-    
-    const falarTexto = (texto, delay) => {
-        setTimeout(() => {
-            const utterance = new SpeechSynthesisUtterance(texto);
-            utterance.lang = 'pt-BR';
-            utterance.rate = 1; // Velocidade
-            synth.speak(utterance);
-        }, delay);
-    };
+    const frases = ["Chamando", "Senha", senha];
+    let index = 0;
 
-    falarTexto("Chamando", 0);
-    falarTexto("Senha", 0);
-    falarTexto(senha, 0);
+    function falarProxima() {
+        if (index < frases.length) {
+            const utterance = new SpeechSynthesisUtterance(frases[index]);
+            utterance.lang = 'pt-BR';
+            utterance.rate = 1;
+
+            // Seleciona uma voz específica em português
+            const voices = synth.getVoices();
+            utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
+
+            utterance.onend = () => {
+                index++;
+                falarProxima();
+            };
+
+            synth.speak(utterance);
+        }
+    }
+
+    // Aguarda carregar as vozes no iOS antes de falar
+    if (synth.getVoices().length > 0) {
+        falarProxima();
+    } else {
+        synth.onvoiceschanged = falarProxima;
+    }
   }
 
   function falarHighlighted(senha) {
     const synth = window.speechSynthesis;
-    
-    const falarTexto = (texto, delay) => {
-        setTimeout(() => {
-            const utterance = new SpeechSynthesisUtterance(texto);
+    const frases = ["Sua Senha está sendo chamada", "Senha", senha];
+    let index = 0;
+
+    function falarProxima() {
+        if (index < frases.length) {
+            const utterance = new SpeechSynthesisUtterance(frases[index]);
             utterance.lang = 'pt-BR';
-            utterance.rate = 0.9;
+            utterance.rate = 1;
+
+            // Seleciona uma voz específica em português
+            const voices = synth.getVoices();
+            utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
+
+            utterance.onend = () => {
+                index++;
+                falarProxima();
+            };
+
             synth.speak(utterance);
 
             if (navigator.vibrate) {
-              navigator.vibrate([200, 100, 200]); // Vibra por 200ms, pausa 100ms e vibra mais 200ms
+                navigator.vibrate([200, 100, 200]);
             }
-        }, delay);
-    };
+        }
+    }
 
-    falarTexto("Sua Senha está sendo chamada", 0);
-    falarTexto("Senha", 0);
-    falarTexto(senha, 0);
+    // Aguarda carregar as vozes no iOS antes de falar
+    if (synth.getVoices().length > 0) {
+        falarProxima();
+    } else {
+        synth.onvoiceschanged = falarProxima;
+    }
   }
 
-  const handleShowNotification = useCallback(() => {
-    if (Notification.permission === "granted" && !notificationSent) {
-      new Notification("Seu pedido está pronto!", {
-        body: `Número: ${highlightedSenha}`,
-        icon: "/check-icon.png"
-      });
-      setNotificationSent(true);
-    }
-  }, [notificationSent, highlightedSenha]);
+
 
   useEffect(() => {
     getData();
@@ -155,16 +176,6 @@ function App() {
         document.body.style.overflow = "hidden";
     } else {
         document.body.style.overflow = "auto";
-    }
-
-    if ("Notification" in window) {
-      Notification.requestPermission().then(permission => {
-        console.log("Permissão de notificação:", permission);
-      });
-    }
-
-    if (highlightedItem?.status === 1 && !notificationSent) {
-      handleShowNotification();
     }
 
     const itemChamando = itens.find(item => item.status === 1);
@@ -178,10 +189,12 @@ function App() {
       setUltimoChamado(highlightedItem.codigo);
     }
 
-    setBlink(true);
-    const timeout = setTimeout(() => setBlink(false), 500); // Pisca por 500ms
-    return () => clearTimeout(timeout);
-  }, [singleton, highlightedStatus, jaAbriu, itens, highlightedItem, notificationSent, handleShowNotification]);
+    if ((highlightedItem?.codigo !== ultimoChamado)) {
+      setBlink(true);
+      const timeout = setTimeout(() => setBlink(false), 500); // Pisca por 500ms
+      return () => clearTimeout(timeout);
+    }
+  }, [ singleton, highlightedStatus, jaAbriu, itens, highlightedItem, notificationSent ]);
 
   return (
     <div className="App">
@@ -202,7 +215,6 @@ function App() {
               onConfirm={handleConfirmAlertChama}
               highlightedSenha={highlightedSenha}
             />
-            {handleShowNotification()}
           </>
         )}
       </div>
