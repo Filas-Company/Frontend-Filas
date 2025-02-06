@@ -13,12 +13,12 @@ import Proximo from './components/proximos';
 import Chamando from './components/Chamando';
 
 
-const URL_Backend = "http://localhost:3000/fila/list"
+const URL_Backend = "https://backend-filas-production.up.railway.app/fila/list"
 // http://localhost:3000/fila/list
 // ou 
 // https://backend-filas-production.up.railway.app/fila/list
 
-const URL_Frontend = "http://localhost:8000"
+const URL_Frontend = "https://frontend-filas.vercel.app"
 //http://localhost:8000
 //ou 
 //https://frontend-filas.vercel.app
@@ -166,8 +166,7 @@ function App() {
     }
   }
 
-
-
+  
   useEffect(() => {
     getData();
 
@@ -189,7 +188,8 @@ function App() {
       setUltimoChamado(highlightedItem.codigo);
     }
 
-    if ((highlightedItem?.codigo !== ultimoChamado)) {
+    if (itemChamando?.codigo !== ultimoChamado) {
+      setUltimoChamado(itemChamando?.codigo);
       setBlink(true);
       const timeout = setTimeout(() => setBlink(false), 500); // Pisca por 500ms
       return () => clearTimeout(timeout);
