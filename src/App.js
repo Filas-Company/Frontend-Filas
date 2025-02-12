@@ -12,6 +12,7 @@ import Pronto from './components/prontos';
 import Proximo from './components/proximos';
 import Chamando from './components/Chamando';
 
+//comentario 2
 
 const URL_Backend = "https://backend-filas-production.up.railway.app/fila/list"
 // http://localhost:3000/fila/list 
