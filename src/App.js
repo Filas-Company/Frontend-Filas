@@ -41,6 +41,7 @@ function App() {
   const [ativo, setAtivo] = useState(false);
   const [blink, setBlink] = useState(false);
 
+  //comentario
 
   let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
 
