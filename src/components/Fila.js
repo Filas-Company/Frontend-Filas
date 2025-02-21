@@ -14,7 +14,7 @@ import Proximo from './proximos';
 import Chamando from './Chamando';
 
 //comentario 2
-const URL_Backend = `https://backend-filas-production.up.railway.app/fila/list`
+const URL_Backend = `http://localhost:3000/fila/list`
 // http://localhost:3000/fila/list
 // ou 
 // https://backend-filas-production.up.railway.app/fila/list
@@ -225,14 +225,14 @@ function Fila() {
                 <header>
                     <nav className="navigation">
                         <div class="left-group">
-                            <a href="https://koalasushiya.com.br/" className="logo-link">
+                            <a href="https://pratodigital.com.br/casaditalia/" className="logo-link" target="_blank">
                                 <span class="material-symbols-outlined">
                                     arrow_back_ios
                                 </span>
-                                <h1 className="logo">Koala</h1>
+                                <h1 className="logo">D'Italia</h1>
                             </a>
                         </div>
-                        <a href={URL_Frontend} className="rest" target='blank'>Fila Online</a>
+                        <a className="rest" target='blank'>Fila Online</a>
                     </nav>
                 </header>
                 <div className="container-prontos">
