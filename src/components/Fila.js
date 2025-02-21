@@ -14,7 +14,7 @@ import Proximo from './proximos';
 import Chamando from './Chamando';
 
 //comentario 2
-const URL_Backend = `http://localhost:3000/fila/list`
+const URL_Backend = `https://backend-filas-production.up.railway.app/fila/list`
 // http://localhost:3000/fila/list
 // ou 
 // https://backend-filas-production.up.railway.app/fila/list
