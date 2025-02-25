@@ -145,7 +145,15 @@ function Fila() {
 
                 // Seleciona uma voz específica em português
                 const voices = synth.getVoices();
-                utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
+                if (!voices.length) {
+                    synth.onvoiceschanged = () => {
+                        voices = synth.getVoices();
+                        utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
+                        synth.speak(utterance);
+                    };
+                } else {
+                    utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
+                }        
 
                 utterance.onend = () => {
                     index++;
