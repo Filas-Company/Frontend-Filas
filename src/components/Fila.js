@@ -14,16 +14,15 @@ import Proximo from './proximos';
 import Chamando from './Chamando';
 
 //comentario 2
-const URL_Backend = `http://localhost:3000/fila/list`
-// http://localhost:3000/fila/list
-// ou 
-// https://backend-filas-production.up.railway.app/fila/list
+const URL_Backend = `https://backend-filas.fly.dev/fila/list`
+// http://localhost:3000/fila/list -- LOCAL
+// https://backend-filas.fly.dev/fila -- FLY.IO
+// https://backend-filas-production.up.railway.app/fila/list -- RAILWAY
 
-const URL_Frontend = "https://frontend-filas.vercel.app"
-//http://localhost:8000
-//ou 
-//https://frontend-filas-production.up.railway.app
-
+const URL_Frontend = "https://www.filaonline.online/dados-fila"
+//http://localhost:8000 -- LOCAL
+//https://www.filaonline.online/dados-fila -- VERSEL
+//https://frontend-filas-production.up.railway.app/dados-fila -- RAILWAY
 
 function Fila() {
     let { restaurante } = useParams();
@@ -153,7 +152,7 @@ function Fila() {
                     };
                 } else {
                     utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
-                }        
+                }
 
                 utterance.onend = () => {
                     index++;
@@ -232,9 +231,9 @@ function Fila() {
             <div className="container-principal">
                 <header>
                     <nav className="navigation">
-                        <div class="left-group">
+                        <div className="left-group">
                             <a href="https://pratodigital.com.br/casaditalia/" className="logo-link" target="_blank">
-                                <span class="material-symbols-outlined">
+                                <span className="material-symbols-outlined">
                                     arrow_back_ios
                                 </span>
                                 <h1 className="logo">D'Italia</h1>
@@ -248,6 +247,7 @@ function Fila() {
                         {itens.map(cadaItem => (
                             (cadaItem.status === 1) ? (
                                 <Chamando
+                                    key={cadaItem.codigo}
                                     item={cadaItem}
                                     highlighted={Number(highlightedSenha) === Number(cadaItem.codigo)}
                                     VerChamados={VerChamados}
@@ -312,6 +312,7 @@ function Fila() {
                                     (cadaItem.status === 3) && !mostrandoTodos ? (
                                         highlightedSenha === cadaItem.codigo ? (
                                             <Proximo
+                                                key={cadaItem.codigo}
                                                 TrocarHighlight={TrocarHighlight}
                                                 item={cadaItem}
                                                 highlighted={String(highlightedSenha) === String(cadaItem.codigo)}
@@ -354,6 +355,7 @@ function Fila() {
                             {itens.map(cadaItem => (
                                 cadaItem.status !== 2 && cadaItem.status !== 1 ? (
                                     <Proximo
+                                        key={cadaItem.codigo}
                                         TrocarHighlight={TrocarHighlight}
                                         item={cadaItem}
                                         highlighted={String(highlightedSenha) === String(cadaItem.codigo)}

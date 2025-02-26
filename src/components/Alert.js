@@ -12,10 +12,9 @@ const Alert = ({ isOpen, onClose, onConfirm, lista }) => {
     // Converte o inputValue para string para garantir comparação adequada
     const inputValueString = inputValue.toString();
     const foundItem = availableItems.find(item => item.codigo.toString() === inputValueString);
-    
+
     if (foundItem) {
       onConfirm(foundItem);
-      console.log('highlightedSenha:', foundItem);
     } else {
       alert("Número ou string não encontrado(a) ou inválido(a). Por favor, insira um valor válido.");
     }
