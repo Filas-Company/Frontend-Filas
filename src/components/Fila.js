@@ -14,7 +14,7 @@ import Proximo from './proximos';
 import Chamando from './Chamando';
 
 //comentario 2
-const URL_Backend = `http://localhost:3000/fila/list`
+const URL_Backend = `https://backend-filas.fly.dev/fila`
 // http://localhost:3000/fila/list -- LOCAL
 // https://backend-filas.fly.dev/fila -- FLY.IO
 // https://backend-filas-production.up.railway.app/fila/list -- RAILWAY
