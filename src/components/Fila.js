@@ -14,7 +14,7 @@ import Proximo from './proximos';
 import Chamando from './Chamando';
 
 //comentario 2
-const URL_Backend = `https://backend-filas.fly.dev/fila/list`
+const URL_Backend = `http://localhost:3000/fila/list`
 // http://localhost:3000/fila/list -- LOCAL
 // https://backend-filas.fly.dev/fila -- FLY.IO
 // https://backend-filas-production.up.railway.app/fila/list -- RAILWAY
@@ -98,6 +98,10 @@ function Fila() {
         setMostrandoTodos(!mostrandoTodos);
     };
 
+    function isIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    }
+
     function falarChamando(senha) {
         if (!ativarSom) return;
         const synth = window.speechSynthesis;
@@ -110,8 +114,7 @@ function Fila() {
                 utterance.lang = 'pt-BR';
                 utterance.rate = 1;
 
-                // Seleciona uma voz específica em português
-                const voices = synth.getVoices();
+                let voices = synth.getVoices();
                 utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
 
                 utterance.onend = () => {
@@ -123,10 +126,16 @@ function Fila() {
             }
         }
 
-        // Aguarda carregar as vozes no iOS antes de falar
+        if (isIOS()) {
+            synth.onvoiceschanged = () => {
+                if (!synth.getVoices().length) return;
+                falarProxima();
+            };
+        }
+
         if (synth.getVoices().length > 0) {
             falarProxima();
-        } else {
+        } else if (isIOS()) {
             synth.onvoiceschanged = falarProxima;
         }
     }
@@ -142,17 +151,8 @@ function Fila() {
                 utterance.lang = 'pt-BR';
                 utterance.rate = 1;
 
-                // Seleciona uma voz específica em português
-                const voices = synth.getVoices();
-                if (!voices.length) {
-                    synth.onvoiceschanged = () => {
-                        voices = synth.getVoices();
-                        utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
-                        synth.speak(utterance);
-                    };
-                } else {
-                    utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
-                }
+                let voices = synth.getVoices();
+                utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
 
                 utterance.onend = () => {
                     index++;
@@ -167,14 +167,19 @@ function Fila() {
             }
         }
 
-        // Aguarda carregar as vozes no iOS antes de falar
+        if (isIOS()) {
+            synth.onvoiceschanged = () => {
+                if (!synth.getVoices().length) return;
+                falarProxima();
+            };
+        }
+
         if (synth.getVoices().length > 0) {
             falarProxima();
-        } else {
+        } else if (isIOS()) {
             synth.onvoiceschanged = falarProxima;
         }
     }
-
 
     useEffect(() => {
         getData();
@@ -188,13 +193,13 @@ function Fila() {
 
         const itemChamando = itens.find(item => item.status === 1);
         if ((itemChamando && itemChamando.codigo !== ultimoChamado) && (itemChamando.codigo !== highlightedItem?.codigo)) {
-            falarChamando(itemChamando.codigo);
-            setUltimoChamado(itemChamando.codigo);
+            falarChamando(itemChamando.text ? itemChamando.text : itemChamando.codigo);
+            setUltimoChamado(itemChamando.text ? itemChamando.text : itemChamando.codigo);
         }
 
         if ((highlightedItem?.status === 1) && (highlightedItem?.codigo !== ultimoChamado)) {
-            falarHighlighted(highlightedItem.codigo);
-            setUltimoChamado(highlightedItem.codigo);
+            falarHighlighted(highlightedItem.text ? itemChamando.text : itemChamando.codigo);
+            setUltimoChamado(highlightedItem.text ? itemChamando.text : itemChamando.codigo);
         }
 
         if (itemChamando?.codigo !== ultimoChamado) {
