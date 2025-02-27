@@ -99,25 +99,6 @@ function Fila() {
         setMostrandoTodos(!mostrandoTodos);
     };
 
-    function testarVoz() {
-        const synth = window.speechSynthesis;
-        const utterance = new SpeechSynthesisUtterance("Teste de voz no iPhone");
-        utterance.lang = "pt-BR";
-
-        // Aguarda carregar as vozes antes de falar
-        synth.onvoiceschanged = () => {
-            const voices = synth.getVoices();
-            utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
-            synth.speak(utterance);
-        };
-
-        // Se já houver vozes carregadas, fala imediatamente
-        if (synth.getVoices().length > 0) {
-            utterance.voice = synth.getVoices().find(voice => voice.lang === "pt-BR") || null;
-            synth.speak(utterance);
-        }
-    }
-
     function isIOS() {
         return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     }
@@ -135,7 +116,7 @@ function Fila() {
                 utterance.rate = 1;
 
                 let voices = synth.getVoices();
-                utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
+                utterance.voice = voices.find(voice => voice.lang === "pt-BR") || voices[0] || null;
 
                 utterance.onend = () => {
                     index++;
@@ -146,17 +127,17 @@ function Fila() {
             }
         }
 
-        if (isIOS()) {
-            synth.onvoiceschanged = () => {
-                if (!synth.getVoices().length) return;
-                falarProxima();
-            };
-        }
-
+        // Para iOS: garantir que as vozes estão carregadas antes de falar
         if (synth.getVoices().length > 0) {
             falarProxima();
-        } else if (isIOS()) {
-            synth.onvoiceschanged = falarProxima;
+        } else {
+            synth.onvoiceschanged = () => {
+                if (synth.getVoices().length > 0) {
+                    falarProxima();
+                }
+            };
+            // Força o carregamento das vozes no iOS
+            synth.getVoices();
         }
     }
 
@@ -172,7 +153,7 @@ function Fila() {
                 utterance.rate = 1;
 
                 let voices = synth.getVoices();
-                utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
+                utterance.voice = voices.find(voice => voice.lang === "pt-BR") || voices[0] || null;
 
                 utterance.onend = () => {
                     index++;
@@ -187,17 +168,15 @@ function Fila() {
             }
         }
 
-        if (isIOS()) {
-            synth.onvoiceschanged = () => {
-                if (!synth.getVoices().length) return;
-                falarProxima();
-            };
-        }
-
         if (synth.getVoices().length > 0) {
             falarProxima();
-        } else if (isIOS()) {
-            synth.onvoiceschanged = falarProxima;
+        } else {
+            synth.onvoiceschanged = () => {
+                if (synth.getVoices().length > 0) {
+                    falarProxima();
+                }
+            };
+            synth.getVoices();
         }
     }
 
@@ -329,7 +308,7 @@ function Fila() {
                                         <p className='p-senhauser'>Próximos</p>
                                     )}
 
-                                    <button className="ver-tudo" onClick={testarVoz}>
+                                    <button className="ver-tudo" onClick={VerTodos}>
                                         <label>{verMais ? "Ver Todos" : "Ver Menos"}
                                         </label>
                                     </button>
