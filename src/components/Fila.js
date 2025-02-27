@@ -14,12 +14,12 @@ import Proximo from './proximos';
 import Chamando from './Chamando';
 
 //comentario 2
-const URL_Backend = `https://backend-filas.fly.dev/fila/list`
+const URL_Backend = `http://localhost:3000/fila/list`
 // http://localhost:3000/fila/list -- LOCAL
 // https://backend-filas.fly.dev/fila/list -- FLY.IO
 // https://backend-filas-production.up.railway.app/fila/list -- RAILWAY
 
-const URL_Frontend = "https://www.filaonline.online/dados-fila"
+const URL_Frontend = "http://localhost:8000"
 //http://localhost:8000 -- LOCAL
 //https://www.filaonline.online/dados-fila -- VERSEL
 //https://frontend-filas-production.up.railway.app/dados-fila -- RAILWAY
@@ -44,6 +44,7 @@ function Fila() {
     const [blink, setBlink] = useState(false);
 
     let highlightedItem = itens.find(item => item.codigo === highlightedSenha);
+
 
     function getData() {
         fetch(URL_Backend + "/" + restaurante, { method: 'GET' })
@@ -75,8 +76,8 @@ function Fila() {
     }
     const handleConfirmAlert = (foundItem) => {
         setHighlightedSenha(foundItem.codigo);
-        setIsAlertOpen(false);
         setHighlightedStatus(foundItem.status);
+        setIsAlertOpen(false);
         if (foundItem.status === 2) {
             VerChamados()
         }
@@ -223,6 +224,7 @@ function Fila() {
                             onClose={handleCloseAlertChama}
                             onConfirm={handleConfirmAlertChama}
                             highlightedSenha={highlightedSenha}
+                            highlightedItem={highlightedItem}
                         />
                     </>
                 )}
@@ -236,10 +238,10 @@ function Fila() {
                                 <span className="material-symbols-outlined">
                                     arrow_back_ios
                                 </span>
-                                <h1 className="logo">D'Italia</h1>
+                                <h1 className="logo">Casa D'Italia</h1>
                             </a>
                         </div>
-                        <a className="rest" target='blank'>Fila Online</a>
+                        <a className="rest" target='blank'>Fila</a>
                     </nav>
                 </header>
                 <div className="container-prontos">

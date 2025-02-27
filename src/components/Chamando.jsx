@@ -19,7 +19,10 @@ function Chamando({ item, highlighted, VerChamados, mostrandoProntos, ativarSom,
           </span>
         }
       </div>
-      <h1>{item.codigo}</h1>
+      <div className="chamando-codigo">
+        <h1>{item.codigo}</h1>
+        <h2 className="codigo-chamando">CHAMANDO...</h2>
+      </div>
       <div className="container-jachamados">
         {item.text && (
           <div className="div-pessoa">

@@ -45,8 +45,10 @@
   font-size: 1.0em;
   color: var(--cinzaEscuro);
   font-weight: 500;
-  margin-top: 10px;
   text-align: center;
+}
+.div-h2 {
+  margin-top: 10px;
 }
 .chama-body h3 {
   margin-top: -2px;
@@ -64,6 +66,10 @@
   font-size: 4.7em;
   color: #29c311;
   justify-content: center;
+}
+
+strong {
+  font-weight: bold !important;
 }
 
 .chama-button {

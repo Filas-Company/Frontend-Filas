@@ -2,7 +2,7 @@ import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
 
-const AlertChama = ({ isOpen, onClose, highlightedSenha }) => {
+const AlertChama = ({ isOpen, onClose, highlightedSenha, highlightedItem }) => {
 
   return (
     <Modal
@@ -21,12 +21,21 @@ const AlertChama = ({ isOpen, onClose, highlightedSenha }) => {
         <span class="material-symbols-outlined" onClick={onClose}>
           check_circle
         </span>
-        <h2>Você está sendo chamado!</h2>
+        <div className='div-h2'>
+          <h2>
+            <strong style={{ textTransform: "uppercase" }}>
+              {highlightedItem.text ? highlightedItem.text : null}
+            </strong>
+          </h2>
+          <h2>
+            Você está sendo chamado!
+          </h2>
+        </div>
         <h3>nº {highlightedSenha}</h3>
 
         <div className="chama-button">
-          <button onClick={onClose} className="button-voltar">Voltar fila</button>
-          <button onClick={onClose} className="button-ok">OK</button>
+          <button onClick={onClose} className="button-voltar">Não Sou Eu</button>
+          <button onClick={onClose} className="button-ok">Estou Indo!</button>
         </div>
       </div>
     </Modal>

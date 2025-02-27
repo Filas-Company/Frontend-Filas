@@ -56,6 +56,15 @@
     font-size: 18px;
     margin-left: 20px;
 }
+
+.chamando-codigo {
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+}
+.codigo-chamando {
+    margin-left: auto;
+    margin-right: 15px;
+}
 .container-jachamados {
     margin-top: 10px;
     margin-bottom: -10px;
