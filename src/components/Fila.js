@@ -14,7 +14,7 @@ import Proximo from './proximos';
 import Chamando from './Chamando';
 
 //comentario 2
-const URL_Backend = `http://localhost:3000/fila/list`
+const URL_Backend = `https://backend-filas.fly.dev/fila/list`
 // http://localhost:3000/fila/list -- LOCAL
 // https://backend-filas.fly.dev/fila/list -- FLY.IO
 // https://backend-filas-production.up.railway.app/fila/list -- RAILWAY
@@ -98,6 +98,25 @@ function Fila() {
         setVerMais(!verMais);
         setMostrandoTodos(!mostrandoTodos);
     };
+
+    function testarVoz() {
+        const synth = window.speechSynthesis;
+        const utterance = new SpeechSynthesisUtterance("Teste de voz no iPhone");
+        utterance.lang = "pt-BR";
+
+        // Aguarda carregar as vozes antes de falar
+        synth.onvoiceschanged = () => {
+            const voices = synth.getVoices();
+            utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
+            synth.speak(utterance);
+        };
+
+        // Se já houver vozes carregadas, fala imediatamente
+        if (synth.getVoices().length > 0) {
+            utterance.voice = synth.getVoices().find(voice => voice.lang === "pt-BR") || null;
+            synth.speak(utterance);
+        }
+    }
 
     function isIOS() {
         return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -310,7 +329,7 @@ function Fila() {
                                         <p className='p-senhauser'>Próximos</p>
                                     )}
 
-                                    <button className="ver-tudo" onClick={VerTodos}>
+                                    <button className="ver-tudo" onClick={testarVoz}>
                                         <label>{verMais ? "Ver Todos" : "Ver Menos"}
                                         </label>
                                     </button>
