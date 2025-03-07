@@ -14,7 +14,7 @@ import Proximo from './proximos';
 import Chamando from './Chamando';
 
 //comentario 2
-const URL_Backend = `http://localhost:3000/fila/list`
+const URL_Backend = `https://backend-filas.fly.dev/fila/list`
 // http://localhost:3000/fila/list -- LOCAL
 // https://backend-filas.fly.dev/fila/list -- FLY.IO
 // https://backend-filas-production.up.railway.app/fila/list -- RAILWAY
@@ -118,7 +118,7 @@ function Fila() {
                 utterance.rate = 1;
 
                 let voices = synth.getVoices();
-                utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
+                utterance.voice = voices.find(voice => voice.lang === "pt-BR") || voices[0] || null;
 
                 utterance.onend = () => {
                     index++;
@@ -129,17 +129,17 @@ function Fila() {
             }
         }
 
-        if (isIOS()) {
-            synth.onvoiceschanged = () => {
-                if (!synth.getVoices().length) return;
-                falarProxima();
-            };
-        }
-
+        // Para iOS: garantir que as vozes estão carregadas antes de falar
         if (synth.getVoices().length > 0) {
             falarProxima();
-        } else if (isIOS()) {
-            synth.onvoiceschanged = falarProxima;
+        } else {
+            synth.onvoiceschanged = () => {
+                if (synth.getVoices().length > 0) {
+                    falarProxima();
+                }
+            };
+            // Força o carregamento das vozes no iOS
+            synth.getVoices();
         }
     }
 
@@ -155,7 +155,7 @@ function Fila() {
                 utterance.rate = 1;
 
                 let voices = synth.getVoices();
-                utterance.voice = voices.find(voice => voice.lang === "pt-BR") || null;
+                utterance.voice = voices.find(voice => voice.lang === "pt-BR") || voices[0] || null;
 
                 utterance.onend = () => {
                     index++;
@@ -170,17 +170,15 @@ function Fila() {
             }
         }
 
-        if (isIOS()) {
-            synth.onvoiceschanged = () => {
-                if (!synth.getVoices().length) return;
-                falarProxima();
-            };
-        }
-
         if (synth.getVoices().length > 0) {
             falarProxima();
-        } else if (isIOS()) {
-            synth.onvoiceschanged = falarProxima;
+        } else {
+            synth.onvoiceschanged = () => {
+                if (synth.getVoices().length > 0) {
+                    falarProxima();
+                }
+            };
+            synth.getVoices();
         }
     }
 
