@@ -8,10 +8,9 @@ function Proximo({ item, highlighted, TrocarHighlight}) {
       */}
       
       <p className="senha">
-        {
-          item.codigo
-        }
+        { String(item.codigo).padStart(2, '0') }
       </p>
+      
       <p className="code">
         {
           item.text ? item.text : ""

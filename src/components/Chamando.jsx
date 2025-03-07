@@ -3,7 +3,7 @@ function Chamando({ item, highlighted, VerChamados, mostrandoProntos, ativarSom,
   return (
     <li className={`chamando ${blink ? "piscar" : ""}`}>
       <div className="cima-chamando">
-        <p className="senha-atual">Senha Atual</p>
+        <p className="senha-atual">CHAMANDO...</p>
 
         {ativarSom ?
           <span
@@ -20,8 +20,8 @@ function Chamando({ item, highlighted, VerChamados, mostrandoProntos, ativarSom,
         }
       </div>
       <div className="chamando-codigo">
-        <h1>{item.codigo}</h1>
-        <h2 className="codigo-chamando">CHAMANDO...</h2>
+      <h1>{String(item.codigo).padStart(2, '0')}</h1>
+        {/*<h2 className="codigo-chamando">Senha<br></br>Atual</h2>*/}
       </div>
       <div className="container-jachamados">
         {item.text && (

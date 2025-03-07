@@ -46,11 +46,7 @@
     50% { background-color: black; }
     100% { background-color: var(--corPrincipal); }
   }
-.chamando h1 {
-    margin-left: 20px;
-    font-size: 3.2em;
-    font-weight: 700;
-}
+
 .senha-atual {
     margin-top: 20px;
     font-size: 18px;
@@ -58,13 +54,29 @@
 }
 
 .chamando-codigo {
-    display: flex;
-    align-items: center; /* Alinha verticalmente */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
 }
 .codigo-chamando {
-    margin-left: auto;
-    margin-right: 15px;
+    grid-column: 3;
+    margin-right: auto;
+    margin-left: -15px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
+.chamando h1 {
+    margin-left: 0px;
+    grid-column: 2;
+    font-size: 3.2em;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
 .container-jachamados {
     margin-top: 10px;
     margin-bottom: -10px;
@@ -107,7 +119,7 @@
     border-radius: 50px;
 }
 .name {
-    font-size: 20px;
+    font-size: 18px;
     padding-right: 10px;
     margin-left: -5px;
 }

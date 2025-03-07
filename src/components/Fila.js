@@ -47,6 +47,7 @@ function Fila() {
 
 
     function getData() {
+        console.log("Usando o fetch...");
         fetch(URL_Backend + "/" + restaurante, { method: 'GET' })
             .then(response => response.json())
             .then(data => setItens(data));
@@ -68,6 +69,7 @@ function Fila() {
 
     function TrocarHighlight(item) {
         setHighlightedSenha(item.codigo === highlightedSenha ? null : item.codigo)
+        setHighlightedStatus(item.codigo === highlightedSenha ? null : item.status)
     }
 
     const handleCloseAlert = () => {
@@ -185,6 +187,12 @@ function Fila() {
     useEffect(() => {
         getData();
 
+        const itemChamado = itens.find(item => item.codigo === highlightedSenha);
+        if (itemChamado && itemChamado.status === 1) {
+            // Lógica para abrir o alert aqui
+            setIsAlertOpenChama(true);
+        }
+
         if (!jaAbriu) {
             setIsAlertOpen(true);
             document.body.style.overflow = "hidden";
@@ -209,7 +217,7 @@ function Fila() {
             const timeout = setTimeout(() => setBlink(false), 500); // Pisca por 500ms
             return () => clearTimeout(timeout);
         }
-    }, [singleton, highlightedStatus, jaAbriu, itens, highlightedItem, notificationSent]);
+    }, [singleton, highlightedStatus, jaAbriu, itens, highlightedItem, notificationSent ]);
 
     return (
         <div className="App">
@@ -222,7 +230,7 @@ function Fila() {
                 />
             </div>
             <div>
-                {highlightedItem && highlightedItem.status === 1 && (
+                {highlightedStatus === 1 && (
                     <>
                         <AlertChama
                             isOpen={isAlertOpenChama}

@@ -7,9 +7,7 @@ function Proximo({ item, highlighted, TrocarHighlight, obterHora }) {
       </div>
       */}
       <p className="senha">
-        {
-          item.codigo
-        }
+        { String(item.codigo).padStart(2, '0') }
       </p>
 
       {
