@@ -12,9 +12,12 @@ import AlertChama from './AlertChama';
 import Pronto from './prontos';
 import Proximo from './proximos';
 import Chamando from './Chamando';
+import {
+    updateCheck
+} from '../services/api';
 
 //comentario 2
-const URL_Backend = `https://backend-filas.fly.dev/fila/list`
+const URL_Backend = `http://localhost:3000/fila/list`
 // http://localhost:3000/fila/list -- LOCAL
 // https://backend-filas.fly.dev/fila/list -- FLY.IO
 // https://backend-filas-production.up.railway.app/fila/list -- RAILWAY
@@ -236,6 +239,7 @@ function Fila() {
                             onConfirm={handleConfirmAlertChama}
                             highlightedSenha={highlightedSenha}
                             highlightedItem={highlightedItem}
+                            updateCheck={updateCheck}
                         />
                     </>
                 )}

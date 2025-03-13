@@ -2,7 +2,7 @@ import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
 
-const AlertChama = ({ isOpen, onClose, highlightedSenha, highlightedItem }) => {
+const AlertChama = ({ isOpen, onClose, highlightedSenha, highlightedItem, updateCheck }) => {
 
   return (
     <Modal
